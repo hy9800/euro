@@ -56,10 +56,12 @@ export default function Footer() {
                 <li className="list-none flex items-start gap-2">
                   <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" aria-hidden="true" />
                   <span className="text-base">
-                    <span itemProp="streetAddress">Šancová 3568/61</span> <br />
+                    <span itemProp="streetAddress">Šancová 3568/61</span>
+                    <br />
                     <span itemProp="addressLocality">Mestská časť Nové Mesto</span>
                     <br />
-                    <span itemProp="addressLocality">Bratislava</span> <span itemProp="postalCode">831 04</span>
+                    <span itemProp="addressLocality">Bratislava</span>{' '}
+                    <span itemProp="postalCode">831 04</span>
                     <br />
                     <span itemProp="addressCountry">Slovakia</span>
                   </span>

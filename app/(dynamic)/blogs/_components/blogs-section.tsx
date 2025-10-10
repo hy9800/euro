@@ -13,13 +13,22 @@ interface BlogsSectionProps {
 // Loading component for suspense
 function BlogsLoading() {
   return (
-    <div className="text-center py-16" role="status" aria-live="polite">
+    <div
+      className="text-center py-16"
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
       <div
         className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#3E5EC0] border-t-transparent"
         aria-hidden="true"
       ></div>
-      <p className="mt-4 text-gray-600 font-medium">Loading blogs...</p>
-      <span className="sr-only">Loading blogs, please wait...</span>
+      <p className="mt-4 text-gray-600 font-medium text-lg">
+        Loading professional training blog articles...
+      </p>
+      <span className="sr-only">
+        Loading blog articles, please wait. Content is being fetched.
+      </span>
     </div>
   );
 }
@@ -47,17 +56,18 @@ export default async function BlogsSection({
   const page = parseInt(searchParams.page || "1", 10);
 
   return (
-    <>
+    <div role="region" aria-label="Blog articles section">
       {/* Client Component for Search Input */}
       <SearchInput
-        placeholder="Search for Blog"
+        placeholder="Search training blogs, courses, and professional development articles"
         resetPageOnSearch={true}
         className="mb-6"
       />
+
       {/* Server Component for Blogs List with Suspense */}
       <Suspense key={`${keyword}-${page}`} fallback={<BlogsLoading />}>
         <BlogsContent keyword={keyword} page={page} />
       </Suspense>
-    </>
+    </div>
   );
 }

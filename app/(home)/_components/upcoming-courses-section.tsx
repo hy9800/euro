@@ -2,29 +2,43 @@ import Container from "@/components/shared/container";
 import SectionTitle from "../../../components/shared/section-title";
 import UpcomingCoursesSlider from "./upcoming-courses-slider";
 import { getUpcomingCourses } from "@/services/services";
+import Image from "next/image";
 
 export default async function UpcomingCoursesSection() {
   const upcomingCourses = await getUpcomingCourses();
 
   return (
-    <section className="courses-section bg-white py-14 relative">
+    <section
+      className="courses-section bg-white py-14 relative"
+      aria-labelledby="upcoming-courses-heading"
+      itemScope
+      itemType="https://schema.org/ItemList"
+    >
       {/* Background Shape */}
-      <img
+      <Image
         src="/assets/images/categories-shape.svg"
         alt=""
+        width={250}
+        height={250}
         className="categories-shape absolute left-[-100px] top-0 w-[250px] h-[250px]"
+        aria-hidden="true"
+        loading="lazy"
       />
 
       <Container>
         {/* Section Header */}
-        <SectionTitle
-          title="Upcoming"
-          highlight="Courses"
-          description="Upcoming Training Courses to develop skills and improve performance"
-        />
+        <header>
+          <SectionTitle
+            title="Upcoming"
+            highlight="Courses"
+            description="Upcoming Training Courses to develop skills and improve performance"
+          />
+        </header>
 
         {/* Courses Slider */}
-        <UpcomingCoursesSlider upcomingCourses={upcomingCourses} />
+        <nav aria-label="Upcoming training courses">
+          <UpcomingCoursesSlider upcomingCourses={upcomingCourses} />
+        </nav>
       </Container>
     </section>
   );

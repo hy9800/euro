@@ -1,6 +1,7 @@
 import Container from "@/components/shared/container";
 import SectionTitle from "../../../components/shared/section-title";
 import CategoryHome from "@/components/cards/category-home";
+import Image from "next/image";
 
 export default function CategoriesSection({
   categories,
@@ -16,33 +17,52 @@ export default function CategoriesSection({
   description?: string;
 }) {
   return (
-    <section className="bg-[#F2F8FF] md:py-14 py-12 relative">
+    <section 
+      className="bg-[#F2F8FF] md:py-14 py-12 relative"
+      aria-labelledby="categories-heading"
+      itemScope 
+      itemType="https://schema.org/ItemList"
+    >
       {/* Background Shape */}
-      <img
+      <Image
         src="/assets/images/categories-shape.svg"
         alt=""
+        width={250}
+        height={250}
         className="absolute left-[-100px] top-0 w-[250px] h-[250px]"
+        aria-hidden="true"
+        loading="lazy"
       />
 
       <Container>
-        <div className="md:mb-10 mb-8">
+        <header className="md:mb-10 mb-8">
           <SectionTitle
             title={title}
             highlight={highlight}
             description={description}
           />
-        </div>
+        </header>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((category) => (
-            <CategoryHome
+        <nav 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          aria-label="Professional training categories"
+        >
+          {categories.map((category, index) => (
+            <div 
               key={category.id}
-              category={category}
-              citySlug={citySlug}
-            />
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org/ListItem"
+            >
+              <meta itemProp="position" content={String(index + 1)} />
+              <CategoryHome
+                category={category}
+                citySlug={citySlug}
+              />
+            </div>
           ))}
-        </div>
+        </nav>
       </Container>
     </section>
   );

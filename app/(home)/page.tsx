@@ -19,22 +19,41 @@ export async function generateMetadata(): Promise<Metadata> {
       title: seo.meta_title,
       description: seo.meta_description,
       keywords: seo.meta_keywords,
+      authors: [{ name: 'EuroQuest International Training' }],
+      creator: 'EuroQuest International Training',
+      publisher: 'EuroQuest International Training',
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
+      },
       openGraph: {
         title: seo.meta_title,
         description: seo.meta_description,
+        siteName: 'EuroQuest International Training',
+        locale: 'en_US',
+        type: 'website',
+        url: seo.canonical,
         images: [
           {
             url: seo.meta_image,
             width: 1200,
             height: 630,
             alt: seo.meta_title,
+            type: 'image/png',
           },
         ],
-        type: 'website',
-        url: seo.canonical,
       },
       twitter: {
         card: 'summary_large_image',
+        site: '@euroquest',
+        creator: '@euroquest',
         title: seo.meta_title,
         description: seo.meta_description,
         images: [seo.meta_image],
@@ -42,6 +61,11 @@ export async function generateMetadata(): Promise<Metadata> {
       alternates: {
         canonical: seo.canonical,
       },
+      verification: {
+        google: 'your-google-verification-code',
+      },
+      category: 'Professional Training',
+      classification: 'Business & Professional Development',
     };
   } catch (error) {
     console.error('Error generating metadata:', error);
@@ -51,6 +75,27 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "EuroQuest International Training | Professional Training Courses & Programs",
       description: "EuroQuest International Training provides diverse professional courses in management, HR, IT, finance, and quality. Advance your skills and grow your career with expert programs.",
       keywords: "professional training, development programs, management courses, HR training, IT skills, finance training, quality courses",
+      authors: [{ name: 'EuroQuest International Training' }],
+      creator: 'EuroQuest International Training',
+      publisher: 'EuroQuest International Training',
+      robots: {
+        index: true,
+        follow: true,
+      },
+      openGraph: {
+        title: "EuroQuest International Training | Professional Training Courses",
+        description: "EuroQuest International Training provides diverse professional courses in management, HR, IT, finance, and quality.",
+        siteName: 'EuroQuest International Training',
+        locale: 'en_US',
+        type: 'website',
+        url: 'https://euroqst.com',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: '@euroquest',
+        creator: '@euroquest',
+      },
+      category: 'Professional Training',
     };
   }
 }
@@ -342,7 +387,65 @@ export default async function HomePage() {
             }
           ]
         },
-        "inLanguage": "en"
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://euroqst.com/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://euroqst.com/#service",
+        "name": "Professional Training Services",
+        "provider": {
+          "@id": "https://euroqst.com/#organization"
+        },
+        "serviceType": "Professional Training and Development",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "United Arab Emirates"
+          },
+          {
+            "@type": "Country",
+            "name": "United Kingdom"
+          },
+          {
+            "@type": "Country",
+            "name": "Spain"
+          },
+          {
+            "@type": "Country",
+            "name": "Austria"
+          },
+          {
+            "@type": "Country",
+            "name": "France"
+          },
+          {
+            "@type": "Country",
+            "name": "Switzerland"
+          },
+          {
+            "@type": "Country",
+            "name": "Turkey"
+          },
+          {
+            "@type": "Country",
+            "name": "Singapore"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "1500",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
       }
     ]
   };

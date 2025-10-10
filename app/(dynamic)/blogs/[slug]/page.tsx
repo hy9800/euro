@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Container from "@/components/shared/container";
 import Schema from "@/components/shared/schema";
+import Image from "next/image";
 
 interface BlogDetailPageProps {
   params: Promise<{
@@ -35,12 +36,13 @@ export async function generateMetadata({
   const modifiedDate = new Date(blog.updated_at).toISOString();
 
   return {
-    title: blog.meta_title || blog.title,
+    title: `${blog.meta_title || blog.title} | EuroQuest International Training Blog`,
     description: blog.meta_description,
     keywords: blog.meta_keywords,
     authors: [{ name: "EuroQuest International" }],
     creator: "EuroQuest International",
     publisher: "EuroQuest International",
+    category: "Professional Training & Development",
     robots: {
       index: true,
       follow: true,
@@ -214,52 +216,70 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       </header>
 
       {/* Main article content */}
-      <main>
+      <main itemScope itemType="https://schema.org/Blog">
         <Container className="md:py-12 py-10">
         <article className="max-w-4xl mx-auto" itemScope itemType="https://schema.org/BlogPosting">
           {/* Hidden metadata for SEO */}
           <meta itemProp="headline" content={blog.title} />
           <meta itemProp="datePublished" content={blog.created_at} />
           <meta itemProp="dateModified" content={blog.updated_at} />
-          <meta itemProp="author" content="EuroQuest International" />
+          <meta itemProp="inLanguage" content="en-US" />
+          <meta itemProp="wordCount" content={String(blog.content ? blog.content.split(/\s+/).length : 0)} />
+          <div itemProp="author" itemScope itemType="https://schema.org/Organization">
+            <meta itemProp="name" content="EuroQuest International" />
+            <meta itemProp="url" content={baseUrl} />
+          </div>
+          <div itemProp="publisher" itemScope itemType="https://schema.org/Organization">
+            <meta itemProp="name" content="EuroQuest International" />
+            <meta itemProp="url" content={baseUrl} />
+            <link itemProp="logo" href={`${baseUrl}/assets/images/logo.png`} />
+          </div>
           <link itemProp="url" href={`${baseUrl}/blogs/${slug}`} />
+          <link itemProp="mainEntityOfPage" href={`${baseUrl}/blogs/${slug}`} />
 
           {/* Blog Image */}
-          <figure className="mb-8" itemProp="image" itemScope itemType="https://schema.org/ImageObject">
-            <img
-              src={blog.image}
-              alt={blog.image_alt || blog.title}
+          <figure className="mb-8 relative" itemProp="image" itemScope itemType="https://schema.org/ImageObject">
+            <Image
+              src={blog?.image}
+              alt={blog.image_alt || `${blog.title} - EuroQuest International Training Blog`}
               title={blog.image_title || blog.title}
-              className="w-full md:h-96 h-64 object-cover rounded-xl shadow-2xl transition-transform duration-300 hover:scale-105"
-              loading="eager"
-              itemProp="url"
               width={1200}
               height={630}
+              className="w-full md:h-96 h-64 object-cover rounded-xl shadow-2xl"
+              priority
+              itemProp="url contentUrl"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
             />
             <meta itemProp="caption" content={blog.image_alt || blog.title} />
+            <meta itemProp="width" content="1200" />
+            <meta itemProp="height" content="630" />
           </figure>
 
           {/* Blog Meta Information */}
-          <aside className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl md:p-6 p-4 mb-8">
+          <aside 
+            className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl md:p-6 p-4 mb-8"
+            role="complementary"
+            aria-label="Article metadata"
+          >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-gray-600">
               <div className="flex flex-wrap items-center gap-4">
-                <time className="flex items-center" dateTime={blog.created_at} itemProp="datePublished">
+                <time className="flex items-center" dateTime={blog.created_at}>
                   <i className="far fa-calendar mr-2 text-blue-600" aria-hidden="true"></i>
                   <span>
-                    {new Date(blog.created_at).toLocaleDateString("en-US", {
+                    Published on {new Date(blog.created_at).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
                     })}
                   </span>
                 </time>
-                <span className="flex items-center" aria-label={`${blog.number_of_views} views`}>
+                <div className="flex items-center" aria-label={`Article has ${blog.number_of_views} views`}>
                   <i className="far fa-eye mr-2 text-blue-600" aria-hidden="true"></i>
-                  <span itemProp="interactionCount">{blog.number_of_views} views</span>
-                </span>
+                  <span>{blog.number_of_views.toLocaleString()} views</span>
+                </div>
                 {blog.updated_at !== blog.created_at && (
-                  <time className="text-xs text-gray-500" dateTime={blog.updated_at} itemProp="dateModified">
-                    Updated:{" "}
+                  <time className="text-xs text-gray-500" dateTime={blog.updated_at}>
+                    Last updated:{" "}
                     {new Date(blog.updated_at).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
@@ -271,7 +291,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               {blog.tag_name && (
                 <span 
                   className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wide"
-                  itemProp="articleSection"
+                  itemProp="keywords articleSection"
                 >
                   {blog.tag_name}
                 </span>
@@ -280,7 +300,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </aside>
 
           {/* Blog Content Section */}
-          <section className="bg-white rounded-xl md:p-8 md:shadow-lg" itemProp="articleBody">
+          <section 
+            className="bg-white rounded-xl md:p-8 md:shadow-lg" 
+            itemProp="articleBody"
+            role="article"
+          >
             <div
               className="blog-content prose prose-lg max-w-none 
               prose-headings:text-[#3E5EC0] prose-headings:font-semibold prose-headings:mb-6 prose-headings:mt-8

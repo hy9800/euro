@@ -5,18 +5,32 @@ import { Home } from "lucide-react";
 import { getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
 import Schema from "@/components/shared/schema";
-
+import Link from "next/link";
 
 // Generate metadata dynamically
 export async function generateMetadata(): Promise<Metadata> {
   try {
     const seoData = await getSeoData('terms');
     const seo = seoData.seo;
+    const baseUrl = "https://euroqst.com";
 
     return {
       title: seo.meta_title,
       description: seo.meta_description,
       keywords: seo.meta_keywords,
+      authors: [{ name: "EuroQuest International" }],
+      creator: "EuroQuest International",
+      publisher: "EuroQuest International",
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      },
       openGraph: {
         title: seo.meta_title,
         description: seo.meta_description,
@@ -29,31 +43,47 @@ export async function generateMetadata(): Promise<Metadata> {
           },
         ],
         type: 'website',
-        url: seo.canonical,
+        url: seo.canonical || `${baseUrl}/terms`,
+        siteName: "EuroQuest International",
+        locale: "en_US",
       },
       twitter: {
         card: 'summary_large_image',
+        site: "@euroquest",
+        creator: "@euroquest",
         title: seo.meta_title,
         description: seo.meta_description,
         images: [seo.meta_image],
       },
       alternates: {
-        canonical: seo.canonical,
+        canonical: seo.canonical || `${baseUrl}/terms`,
       },
     };
   } catch (error) {
     console.error('Error generating metadata for terms page:', error);
+    const baseUrl = "https://euroqst.com";
     
     // Fallback metadata
     return {
       title: "Terms & Conditions | EuroQuest International Legal Terms & Service Agreement",
       description: "EuroQuest International Terms & Conditions outline the rules, obligations, and legal agreements governing the use of our website and training services.",
       keywords: "terms and conditions, legal terms, service agreement, EuroQuest International, user agreement, website terms, training terms",
+      authors: [{ name: "EuroQuest International" }],
+      creator: "EuroQuest International",
+      publisher: "EuroQuest International",
+      robots: {
+        index: true,
+        follow: true,
+      },
+      alternates: {
+        canonical: `${baseUrl}/terms`,
+      },
     };
   }
 }
 
 export default function TermsPage() {
+  const baseUrl = "https://euroqst.com";
   const breadcrumbs: BreadcrumbItem[] = [
     {
       href: "/",
@@ -66,30 +96,63 @@ export default function TermsPage() {
     }
   ];
 
+  // Terms & Conditions Schema
+  const termsSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Terms & Conditions - Legal Terms & Service Agreement",
+    description: "EuroQuest International Terms & Conditions outline the rules and legal agreements governing the use of our website and training services",
+    url: `${baseUrl}/terms`,
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EuroQuest International",
+      url: baseUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "EuroQuest International",
+      url: baseUrl,
+    },
+  };
+
   return (
     <>     
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsSchema) }}
+      />
+
       <Schema 
         pageType="terms"
         pageTitle="Terms & Conditions | EuroQuest International Legal Terms & Service Agreement"
         pageDescription="EuroQuest International Terms & Conditions outline the rules, obligations, and legal agreements governing the use of our website and training services."
-        pageUrl="https://euroqst.com/terms"
+        pageUrl={`${baseUrl}/terms`}
       />
+      
       {/* Hero Banner */}
-      <HeroBanner
-        backgroundImage="/assets/images/hero-terms.png"
-        title="General Terms & Conditions"
-        description="These General Terms & Conditions outline the rules, obligations, and legal agreements governing the use of EuroQuest International's website and services."
-        breadcrumbs={breadcrumbs}
-        enableTypewriter={true}
-        typewriterSpeed={100}
-        typewriterDelay={500}
-      />
+      <header>
+        <HeroBanner
+          backgroundImage="/assets/images/hero-terms.png"
+          title="General Terms & Conditions"
+          description="These General Terms & Conditions outline the rules, obligations, and legal agreements governing the use of EuroQuest International's website and services."
+          breadcrumbs={breadcrumbs}
+          enableTypewriter={true}
+          typewriterSpeed={100}
+          typewriterDelay={500}
+        />
+      </header>
 
       {/* Terms Content */}
-      <section className="md:py-12 py-10 bg-white">
-        <Container>
-          {/* Introduction */}
-          <div>
+      <main>
+        <section 
+          className="md:py-12 py-10 bg-white"
+          aria-labelledby="terms-content"
+        >
+          <Container>
+            {/* Introduction */}
+            <article>
             <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed mb-6">
               These terms and conditions ("Agreement") set forth the general terms
               and conditions of your use of the Euroquest International website
@@ -112,10 +175,10 @@ export default function TermsPage() {
             </p>
 
             {/* Billing and Payments */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="billing-payments">
+              <h2 id="billing-payments" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Billing and Payments
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   You shall pay all fees or charges to your account in accordance with
@@ -134,13 +197,13 @@ export default function TermsPage() {
                   product pricing at any time.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Accuracy of Information */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="accuracy-info">
+              <h2 id="accuracy-info" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Accuracy of Information
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   Occasionally there may be information on the Website that contains
@@ -158,13 +221,13 @@ export default function TermsPage() {
                   updated.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Links to Other Resources */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="external-links">
+              <h2 id="external-links" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Links to Other Resources
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   Although the Website and Services may link to other resources (such
@@ -181,13 +244,13 @@ export default function TermsPage() {
                   other off-site resources is at your own risk.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Prohibited Uses */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="prohibited-uses">
+              <h2 id="prohibited-uses" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Prohibited Uses
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   In addition to other terms as set forth in the Agreement, you are
@@ -212,13 +275,13 @@ export default function TermsPage() {
                   for violating any of the prohibited uses.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Intellectual Property Rights */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="ip-rights">
+              <h2 id="ip-rights" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Intellectual Property Rights
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   "Intellectual Property Rights" means all present and future rights
@@ -245,13 +308,13 @@ export default function TermsPage() {
                   use any of EUROQUEST INTERNATIONAL s.r.o. or third party trademarks.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Disclaimer of Warranty */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="warranty-disclaimer">
+              <h2 id="warranty-disclaimer" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Disclaimer of Warranty
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   You agree that such Service is provided on an "as is" and "as
@@ -277,13 +340,13 @@ export default function TermsPage() {
                   warranty not expressly made herein.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Limitation of Liability */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="liability-limit">
+              <h2 id="liability-limit" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Limitation of Liability
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   To the fullest extent permitted by applicable law, in no event will
@@ -309,13 +372,13 @@ export default function TermsPage() {
                   fails of its essential purpose.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Indemnification */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="indemnification">
+              <h2 id="indemnification" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Indemnification
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   You agree to indemnify and hold EUROQUEST INTERNATIONAL s.r.o. and
@@ -328,18 +391,23 @@ export default function TermsPage() {
                   Services or any willful misconduct on your part.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Customer Service */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
-                Customer Service
-              </h3>
+            <section className="mb-8" aria-labelledby="customer-service">
+              <h2 id="customer-service" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+                Customer Service & Contact
+              </h2>
               <div className="space-y-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <span className="text-xl font-bold text-gray-600 block mb-4">
+                <div className="bg-gray-50 p-6 rounded-lg" itemScope itemType="https://schema.org/ContactPoint">
+                  <Link 
+                    href="mailto:info@euroqst.com"
+                    className="text-xl font-bold text-[#3E5EC0] hover:underline block mb-4"
+                    itemProp="email"
+                  >
                     info@euroqst.com
-                  </span>
+                  </Link>
+                  <meta itemProp="contactType" content="Customer Service" />
                   <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                     We will attempt to resolve complaints and disputes and make every
                     reasonable effort to honor your wish to exercise your rights as
@@ -348,10 +416,11 @@ export default function TermsPage() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
+            </section>
+          </article>
         </Container>
       </section>
+      </main>
     </>
   );
 }

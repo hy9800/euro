@@ -124,6 +124,7 @@ export default async function CategoriesPage({ searchParams }: CategoriesPagePro
         description:
           "Explore all training categories at EuroQuest International. Browse professional courses in management, HR, IT, finance, and more across different fields.",
         url: `${baseUrl}/training-courses`,
+        inLanguage: "en-US",
         publisher: {
           "@type": "Organization",
           name: "EuroQuest International",
@@ -136,9 +137,11 @@ export default async function CategoriesPage({ searchParams }: CategoriesPagePro
         hasPart: categories.map((category: Category) => ({
           "@type": "ItemList",
           name: category.title,
+          description: `Professional ${category.title} training courses`,
           url: `${baseUrl}/training-courses/${category.slug}`,
           image: category.image,
         })),
+        numberOfItems: categories.length,
       }
     : null;
 
@@ -209,7 +212,8 @@ export default async function CategoriesPage({ searchParams }: CategoriesPagePro
       </header>
 
       {/* Main content with semantic HTML */}
-      <main>
+      <main itemScope itemType="https://schema.org/ItemList">
+        <meta itemProp="numberOfItems" content={String(categories.length)} />
         <Container className="md:pb-12 pb-10">
           <section aria-label="Training categories and search">
             <CategoriesSection categories={categories} />

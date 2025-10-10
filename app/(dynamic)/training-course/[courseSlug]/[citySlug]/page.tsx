@@ -153,13 +153,27 @@ export default async function Page({ params }: PageProps) {
     courseCode: course.code,
     url: `${baseUrl}/training-course/${course.slug}/${city.slug}`,
     image: seo.meta_image || course.image || "/assets/images/hero-course.webp",
+    inLanguage: "en-US",
+    educationalLevel: "Professional",
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "Professional",
+    },
     about: {
       "@type": "Thing",
       name: course.category?.title,
     },
+    locationCreated: {
+      "@type": "Place",
+      name: city.title,
+    },
     hasCourseInstance: timings.map((timing) => ({
       "@type": "CourseInstance",
       courseMode: "onsite",
+      instructor: {
+        "@type": "Organization",
+        name: "EuroQuest International",
+      },
       location: {
         "@type": "Place",
         name: city.title,
@@ -175,8 +189,10 @@ export default async function Page({ params }: PageProps) {
         price: timing.fees,
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
+        url: `${baseUrl}/training-course/${course.slug}/${city.slug}`,
       },
     })),
+    numberOfCredits: timings.length,
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -249,23 +265,41 @@ export default async function Page({ params }: PageProps) {
       </header>
 
       {/* Main content with semantic HTML */}
-      <main>
+      <main itemScope itemType="https://schema.org/Course">
+        <meta itemProp="name" content={`${course.title} in ${city.title}`} />
+        <meta itemProp="courseCode" content={course.code} />
+        <meta itemProp="numberOfCredits" content={String(timings.length)} />
+        <div itemProp="locationCreated" itemScope itemType="https://schema.org/Place">
+          <meta itemProp="name" content={city.title} />
+        </div>
+        
         <Container>
-          <section aria-label="Course schedule and timings">
+          <section aria-labelledby="city-course-schedule-heading">
+            <h2 id="city-course-schedule-heading" className="sr-only">
+              {course.title} Training Schedule in {city.title}
+            </h2>
             <CourseTimings course={course} timings={timings} />
           </section>
 
-          <section aria-label="Course content and details">
+          <section aria-labelledby="city-course-details-heading">
+            <h2 id="city-course-details-heading" className="sr-only">
+              {course.title} Course Content and Details
+            </h2>
             <CourseContent course={course} />
           </section>
         </Container>
 
         {/* Additional Description Section */}
         {seo && seo.additional_description && (
-          <AdditionalDescription
-            title={course.title}
-            additional_description={seo.additional_description}
-          />
+          <section aria-labelledby="city-course-additional">
+            <h2 id="city-course-additional" className="sr-only">
+              Additional Information about {course.title} in {city.title}
+            </h2>
+            <AdditionalDescription
+              title={course.title}
+              additional_description={seo.additional_description}
+            />
+          </section>
         )}
       </main>
     </>

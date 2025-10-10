@@ -66,24 +66,31 @@ export default function CourseTimings({ course, timings }: CourseTimingsProps) {
   // }
 
   return (
-    <div>
-      <SearchSection
-        fields={searchFields}
-        actions={customActions}
-        onSubmit={handleSearchSubmit}
-        onReset={handleSearchReset}
-        initialValues={searchInitialValues}
-        resetBehavior="local"
-      />
+    <div itemScope itemType="https://schema.org/ItemList">
+      <meta itemProp="numberOfItems" content={String(filteredTimings.length)} />
+      <meta itemProp="name" content={`${course.title} Training Schedule`} />
+      
+      {/* Search and Filter Section */}
+        <SearchSection
+          fields={searchFields}
+          actions={customActions}
+          onSubmit={handleSearchSubmit}
+          onReset={handleSearchReset}
+          initialValues={searchInitialValues}
+          resetBehavior="local"
+        />
 
-      <TimingGrid
-        timings={filteredTimings}
-        course={course}
-        cities={cities || []}
-        onDownload={handleDownload}
-        onRegister={handleRegister}
-        onInquire={handleInquire}
-      />
+      {/* Training Schedules Grid */}
+      <nav aria-label="Available training schedules">
+        <TimingGrid
+          timings={filteredTimings}
+          course={course}
+          cities={cities || []}
+          onDownload={handleDownload}
+          onRegister={handleRegister}
+          onInquire={handleInquire}
+        />
+      </nav>
     </div>
   );
 }

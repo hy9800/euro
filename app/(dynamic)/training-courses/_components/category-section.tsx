@@ -24,13 +24,25 @@ export default function CategorySection({
     : courses;
 
   return (
-    <>
+    <div itemScope itemType="https://schema.org/ItemList">
+      <meta itemProp="numberOfItems" content={String(filteredCourses.length)} />
+      
       {/* Course Search - Client Component */}
-      <SearchInput placeholder="Search for Course" />
+      <div role="search" aria-label="Search training courses in this category">
+        <SearchInput placeholder="Search for Course" />
+      </div>
+
+      {/* Results Summary for Screen Readers */}
+      <div className="sr-only" role="status" aria-live="polite">
+        {keyword 
+          ? `Showing ${filteredCourses.length} courses matching "${keyword}"`
+          : `Showing all ${filteredCourses.length} available training courses`
+        }
+      </div>
 
       {/* Courses List */}
       <CoursesList filteredCourses={filteredCourses} />
-    </>
+    </div>
   );
 }
 

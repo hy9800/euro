@@ -147,6 +147,7 @@ export default async function Page({
       category.description ||
       `Professional ${category.title} training courses at EuroQuest International`,
     url: `${baseUrl}/training-courses/${slug}`,
+    inLanguage: "en-US",
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -186,10 +187,18 @@ export default async function Page({
       provider: {
         "@type": "Organization",
         name: "EuroQuest International",
+        url: baseUrl,
       },
       url: `${baseUrl}/training-course/${course.slug}`,
       courseCode: course.code,
+      inLanguage: "en-US",
+      educationalLevel: "Professional",
+      audience: {
+        "@type": "EducationalAudience",
+        educationalRole: "Professional",
+      },
     })),
+    numberOfItems: courses.length,
   };
 
   return (
@@ -224,19 +233,30 @@ export default async function Page({
       </header>
 
       {/* Main content with semantic HTML */}
-      <main>
+      <main itemScope itemType="https://schema.org/ItemList">
+        <meta itemProp="name" content={`${category.title} Professional Training Courses`} />
+        <meta itemProp="numberOfItems" content={String(courses.length)} />
+        
         <Container className="md:pb-12 pb-10">
-          <section aria-label="Course search and listing">
+          <section aria-labelledby="courses-heading">
+            <h1 id="courses-heading" className="sr-only">
+              {courses.length} Professional {category.title} Training Courses
+            </h1>
             <CategorySection courses={courses} searchParams={searchParamsData} />
           </section>
         </Container>
 
         {/* Additional description Section */}
         {category && category.additional_description && (
-          <AdditionalDescription
-            title={category.title}
-            additional_description={category.additional_description}
-          />
+          <section aria-labelledby="category-description">
+            <h2 id="category-description" className="sr-only">
+              About {category.title} Training Programs
+            </h2>
+            <AdditionalDescription
+              title={category.title}
+              additional_description={category.additional_description}
+            />
+          </section>
         )}
       </main>
     </>

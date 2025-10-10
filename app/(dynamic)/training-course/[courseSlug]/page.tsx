@@ -158,6 +158,12 @@ export default async function Page({
     courseCode: course.code,
     url: `${baseUrl}/training-course/${course.slug}`,
     image: course.image || "/assets/images/hero-course.webp",
+    inLanguage: "en-US",
+    educationalLevel: "Professional",
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "Professional",
+    },
     about: {
       "@type": "Thing",
       name: course.category?.title,
@@ -165,12 +171,14 @@ export default async function Page({
     hasCourseInstance: timings.map((timing) => ({
       "@type": "CourseInstance",
       courseMode: "onsite",
+      instructor: {
+        "@type": "Organization",
+        name: "EuroQuest International",
+      },
       location: {
         "@type": "Place",
-        // name: timing.city.title,
         address: {
           "@type": "PostalAddress",
-          // addressLocality: timing.city.title,
         },
       },
       startDate: timing.start_date,
@@ -180,8 +188,10 @@ export default async function Page({
         price: timing.fees,
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
+        url: `${baseUrl}/training-course/${course.slug}`,
       },
     })),
+    numberOfCredits: timings.length,
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -246,7 +256,11 @@ export default async function Page({
       </header>
 
       {/* Main content with semantic HTML */}
-      <main>
+      <main itemScope itemType="https://schema.org/Course">
+        <meta itemProp="name" content={course.title} />
+        <meta itemProp="courseCode" content={course.code} />
+        <meta itemProp="numberOfCredits" content={String(timings.length)} />
+        
         <Container>
           <section aria-label="Course schedule and timings">
             <CourseTimings course={course} timings={timings} />

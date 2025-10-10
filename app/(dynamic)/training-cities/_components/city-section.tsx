@@ -27,13 +27,15 @@ export default function CitySection({
     : courses;
 
   return (
-    <>
+    <div itemScope itemType="https://schema.org/ItemList">
+      <meta itemProp="numberOfItems" content={String(filteredCourses.length)} />
+      
       {/* Course Search - Client Component */}
       <SearchInput placeholder="Search for Course" />
 
       {/* Courses List */}
       <CoursesList filteredCourses={filteredCourses} citySlug={citySlug} />
-    </>
+    </div>
   );
 }
 

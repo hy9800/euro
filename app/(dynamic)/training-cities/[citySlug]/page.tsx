@@ -135,6 +135,7 @@ export default async function Page({
     name: city.title,
     description: city.description?.replace(/<[^>]*>/g, '') || `Professional training courses in ${city.title}`,
     url: `${baseUrl}/training-cities/${citySlug}`,
+    image: city.image || city.meta_image,
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -167,17 +168,28 @@ export default async function Page({
         url: `${baseUrl}/assets/images/logo.png`,
       },
     },
-    event: courses.map((course: Course) => ({
+    event: courses.map((course: Course, index: number) => ({
       "@type": "Course",
       name: course.title,
       description: course.description,
       provider: {
         "@type": "Organization",
         name: "EuroQuest International",
+        url: baseUrl,
       },
       url: `${baseUrl}/training-course/${course.slug}`,
       courseCode: course.code,
+      inLanguage: "en-US",
+      hasCourseInstance: {
+        "@type": "CourseInstance",
+        courseMode: "onsite",
+        location: {
+          "@type": "Place",
+          name: city.title,
+        },
+      },
     })),
+    numberOfCourses: courses.length,
   };
 
   return (
@@ -213,7 +225,10 @@ export default async function Page({
       </header>
 
       {/* Main content with semantic HTML */}
-      <main>
+      <main itemScope itemType="https://schema.org/ItemList">
+        <meta itemProp="name" content={`Professional Training Courses in ${city.title}`} />
+        <meta itemProp="numberOfItems" content={String(courses.length)} />
+        
         <Container className="md:pb-12 pb-10">
           <section aria-label="Course search and listing">
             <CitySection
@@ -229,7 +244,7 @@ export default async function Page({
           <CategoriesSection
             categories={categories}
             citySlug={citySlug}
-            title="Categories in"
+            title="Training Categories in"
             highlight={city.title}
           />
         </div>

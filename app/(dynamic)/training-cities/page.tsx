@@ -123,6 +123,7 @@ export default async function CitiesPage({ searchParams }: CitiesPageProps) {
         description:
           "Explore training courses in leading global capitals and cities. Browse professional training programs in Dubai, London, Barcelona, Istanbul, Vienna, Paris, and Geneva.",
         url: `${baseUrl}/training-cities`,
+        inLanguage: "en-US",
         publisher: {
           "@type": "Organization",
           name: "EuroQuest International",
@@ -137,7 +138,9 @@ export default async function CitiesPage({ searchParams }: CitiesPageProps) {
           name: city.title,
           url: `${baseUrl}/training-cities/${city.slug}`,
           image: city.image,
+          description: `Professional training courses available in ${city.title}`,
         })),
+        numberOfItems: cities.length,
       }
     : null;
 
@@ -208,7 +211,8 @@ export default async function CitiesPage({ searchParams }: CitiesPageProps) {
       </header>
 
       {/* Main content with semantic HTML */}
-      <main>
+      <main itemScope itemType="https://schema.org/ItemList">
+        <meta itemProp="numberOfItems" content={String(cities.length)} />
         <Container className="md:pb-12 pb-10">
           <section aria-label="Training cities and search">
             <CitiesSection cities={cities} />

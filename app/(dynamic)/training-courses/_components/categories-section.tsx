@@ -15,12 +15,20 @@ export default function CategoriesSection({
       <SearchBanner resetBehavior="local" />
 
       {/* Display Categories */}
-      <section>
-        <AnimatedCategoriesGrid>
-          {categories.map((category) => (
-            <CategoryCard key={category.slug} category={category} />
-          ))}
-        </AnimatedCategoriesGrid>
+      <section
+        aria-label={`${categories.length} professional training categories available`}
+        itemScope
+        itemType="https://schema.org/ItemList"
+      >
+        <meta itemProp="numberOfItems" content={String(categories.length)} />
+
+        <nav role="list" aria-label="Browse professional training categories">
+          <AnimatedCategoriesGrid>
+            {categories.map((category) => (
+              <CategoryCard key={category.slug} category={category} />
+            ))}
+          </AnimatedCategoriesGrid>
+        </nav>
       </section>
     </>
   );

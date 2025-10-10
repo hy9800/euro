@@ -5,18 +5,32 @@ import { Home } from "lucide-react";
 import { getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
 import Schema from "@/components/shared/schema";
-
+import Link from "next/link";
 
 // Generate metadata dynamically
 export async function generateMetadata(): Promise<Metadata> {
   try {
     const seoData = await getSeoData('privacy');
     const seo = seoData.seo;
+    const baseUrl = "https://euroqst.com";
 
     return {
       title: seo.meta_title,
       description: seo.meta_description,
       keywords: seo.meta_keywords,
+      authors: [{ name: "EuroQuest International" }],
+      creator: "EuroQuest International",
+      publisher: "EuroQuest International",
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      },
       openGraph: {
         title: seo.meta_title,
         description: seo.meta_description,
@@ -29,31 +43,47 @@ export async function generateMetadata(): Promise<Metadata> {
           },
         ],
         type: 'website',
-        url: seo.canonical,
+        url: seo.canonical || `${baseUrl}/privacy-policy`,
+        siteName: "EuroQuest International",
+        locale: "en_US",
       },
       twitter: {
         card: 'summary_large_image',
+        site: "@euroquest",
+        creator: "@euroquest",
         title: seo.meta_title,
         description: seo.meta_description,
         images: [seo.meta_image],
       },
       alternates: {
-        canonical: seo.canonical,
+        canonical: seo.canonical || `${baseUrl}/privacy-policy`,
       },
     };
   } catch (error) {
     console.error('Error generating metadata for privacy policy page:', error);
+    const baseUrl = "https://euroqst.com";
     
     // Fallback metadata
     return {
       title: "Privacy Policy | EuroQuest International Data Protection & GDPR Compliance",
       description: "EuroQuest International Privacy Policy explains how we collect, use, and protect your personal information in compliance with GDPR and international data protection standards.",
       keywords: "privacy policy, data protection, GDPR compliance, personal information, EuroQuest International, data privacy, user rights",
+      authors: [{ name: "EuroQuest International" }],
+      creator: "EuroQuest International",
+      publisher: "EuroQuest International",
+      robots: {
+        index: true,
+        follow: true,
+      },
+      alternates: {
+        canonical: `${baseUrl}/privacy-policy`,
+      },
     };
   }
 }
 
 export default function PrivacyPolicyPage() {
+  const baseUrl = "https://euroqst.com";
   const breadcrumbs: BreadcrumbItem[] = [
     {
       href: "/",
@@ -66,31 +96,64 @@ export default function PrivacyPolicyPage() {
     }
   ];
 
+  // Privacy Policy Schema
+  const privacySchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Privacy Policy - Data Protection & GDPR Compliance",
+    description: "EuroQuest International Privacy Policy explains how we collect, use, and protect your personal information in compliance with GDPR",
+    url: `${baseUrl}/privacy-policy`,
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EuroQuest International",
+      url: baseUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "EuroQuest International",
+      url: baseUrl,
+    },
+  };
+
   return (
     <>     
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacySchema) }}
+      />
+
       <Schema 
         pageType="privacy"
         pageTitle="Privacy Policy | EuroQuest International Data Protection & GDPR Compliance"
         pageDescription="EuroQuest International Privacy Policy explains how we collect, use, and protect your personal information in compliance with GDPR and international data protection standards."
-        pageUrl="https://euroqst.com/privacy-policy"
+        pageUrl={`${baseUrl}/privacy-policy`}
       />
+      
       {/* Hero Banner */}
-      <HeroBanner
-        backgroundImage="/assets/images/hero-privacy.png"
-        title="Privacy Policy"
-        description="This Privacy Policy explains how EuroQuest International collects, uses, and protects your personal information when you access our website and services, in compliance with GDPR and international data protection standards."
-        breadcrumbs={breadcrumbs}
-        enableTypewriter={true}
-        typewriterSpeed={100}
-        typewriterDelay={500}
-      />
+      <header>
+        <HeroBanner
+          backgroundImage="/assets/images/hero-privacy.png"
+          title="Privacy Policy & Data Protection"
+          description="This Privacy Policy explains how EuroQuest International collects, uses, and protects your personal information when you access our website and services, in compliance with GDPR and international data protection standards."
+          breadcrumbs={breadcrumbs}
+          enableTypewriter={true}
+          typewriterSpeed={100}
+          typewriterDelay={500}
+        />
+      </header>
 
       {/* Privacy Content */}
-      <section className="md:py-12 py-10 bg-white">
-        <Container>
-          {/* Introduction */}
-          <div>
-            <p className="md:md:text-lg text-sm font-medium text-sm text-gray-600 leading-relaxed mb-6">
+      <main>
+        <section 
+          className="md:py-12 py-10 bg-white"
+          aria-labelledby="privacy-content"
+        >
+          <Container>
+            {/* Introduction */}
+            <article>
+            <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed mb-6">
               We respect your privacy and are committed to protecting it through our
               compliance with this privacy policy ("Policy"). This Policy describes
               the types of information we may collect from you or that you may
@@ -116,10 +179,10 @@ export default function PrivacyPolicyPage() {
             </p>
 
             {/* Collection of Personal Information */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="collection-info">
+              <h2 id="collection-info" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Collection of Personal Information
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   You can access and use the Website and Services without telling us
@@ -137,13 +200,13 @@ export default function PrivacyPolicyPage() {
                   information (such as name, country of residence, etc)
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Privacy of Children */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="children-privacy">
+              <h2 id="children-privacy" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Privacy of Children
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   We do not knowingly collect any Personal Information from children
@@ -165,13 +228,13 @@ export default function PrivacyPolicyPage() {
                   permission.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Use and Processing of Collected Information */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="use-processing">
+              <h2 id="use-processing" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Use and Processing of Collected Information
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   We act as a data controller and a data processor in terms of the
@@ -229,13 +292,13 @@ export default function PrivacyPolicyPage() {
                   enter into a contract.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Payment Processing */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="payment-processing">
+              <h2 id="payment-processing" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Payment Processing
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   In case of Services requiring payment, you may need to provide your
@@ -270,13 +333,13 @@ export default function PrivacyPolicyPage() {
                   suggest that you review their respective privacy policies.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Data Retention */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="data-retention">
+              <h2 id="data-retention" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Data Retention
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   We will retain and use your Personal Information for the period
@@ -291,13 +354,13 @@ export default function PrivacyPolicyPage() {
                   enforced after the expiration of the retention period.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Your Rights */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="your-rights">
+              <h2 id="your-rights" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Your Rights
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   You have the following rights in relation to your Personal
@@ -313,13 +376,13 @@ export default function PrivacyPolicyPage() {
                   and profiling.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Security */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="security-info">
+              <h2 id="security-info" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Security of Information
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   We secure information you provide on computer servers in a
@@ -332,13 +395,13 @@ export default function PrivacyPolicyPage() {
                   guaranteed.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Changes to Policy */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+            <section className="mb-8" aria-labelledby="policy-changes">
+              <h2 id="policy-changes" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
                 Changes to This Policy
-              </h3>
+              </h2>
               <div className="space-y-6">
                 <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                   We reserve the right to modify this Policy at any time. Changes and
@@ -349,18 +412,23 @@ export default function PrivacyPolicyPage() {
                   if any, we use and/or disclose it.
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* Contact Information */}
-            <div className="mb-8">
-              <h3 className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
-                Customer Service
-              </h3>
+            <section className="mb-8" aria-labelledby="contact-service">
+              <h2 id="contact-service" className="md:text-2xl text-xl font-semibold text-[#3E5EC0] mb-2">
+                Customer Service & Contact
+              </h2>
               <div className="space-y-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <span className="md:text-lg text-sm font-medium font-bold text-gray-600 block mb-4">
+                <div className="bg-gray-50 p-6 rounded-lg" itemScope itemType="https://schema.org/ContactPoint">
+                  <Link 
+                    href="mailto:info@euroqst.com"
+                    className="md:text-lg text-sm font-bold text-[#3E5EC0] hover:underline block mb-4"
+                    itemProp="email"
+                  >
                     info@euroqst.com
-                  </span>
+                  </Link>
+                  <meta itemProp="contactType" content="Customer Service" />
                   <p className="md:text-lg text-sm font-medium text-gray-600 leading-relaxed">
                     We will attempt to resolve complaints and disputes and make every
                     reasonable effort to honor your wish to exercise your rights as
@@ -369,10 +437,11 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
+            </section>
+          </article>
         </Container>
       </section>
+      </main>
     </>
   );
 }

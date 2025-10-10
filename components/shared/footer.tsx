@@ -149,10 +149,10 @@ export default function Footer() {
           {/* About and Social */}
           <div 
             className="max-w-[200px] w-full md:w-auto"
-            aria-labelledby="about-heading"
+            aria-labelledby="footer-about-heading"
           >
             <h2 
-              id="about-heading"
+              id="footer-about-heading"
               className="text-white text-lg font-bold mb-4"
             >
               About EuroQuest

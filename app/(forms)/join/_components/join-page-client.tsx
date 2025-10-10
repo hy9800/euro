@@ -200,7 +200,7 @@ export default function JoinPageClient() {
     <main>
       <section
         className="py-16 mt-8"
-        aria-labelledby="join-heading"
+        aria-labelledby="join-form-heading"
         itemScope
         itemType="https://schema.org/WebPage"
       >
@@ -209,7 +209,7 @@ export default function JoinPageClient() {
           <div className="w-full">
             <header>
               <h1
-                id="join-heading"
+                id="join-form-heading"
                 className="mb-5 text-[#314EA9] text-xl md:text-2xl font-semibold"
               >
                 Join Our Team

@@ -36,9 +36,15 @@ export default function AboutSection({ className = "" }: AboutSectionProps) {
               >
                 <span className="text-gray-800">About</span>
                 <span className="inline-block ml-3 relative">
-                  <span className="text-[#3E5EC0] font-bold">
-                    EuroQuest International
-                  </span>
+                  <span className="text-[#3E5EC0] font-bold">EuroQuest</span>
+                  <img
+                    src="/assets/images/line.svg"
+                    alt=""
+                    className="absolute -bottom-2 left-0 w-full h-auto"
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </span>
               </h2>
             </header>

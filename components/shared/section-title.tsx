@@ -47,7 +47,7 @@ export default function SectionTitle({
       </HeadingTag>
       {description && (
         <p
-          className="text-[#7C7B7B] mt-2 md:text-base text-sm"
+          className="text-[#5A5A5A] mt-2 md:text-base text-sm"
           itemProp="description"
         >
           {description}

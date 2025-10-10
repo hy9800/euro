@@ -49,7 +49,7 @@ export default function CityHomeCard({ city }: CityHomeCardProps) {
                   itemProp="name"
                 >
                   {city.title}
-                  <span className="block text-xs font-normal text-[#7C7B7B] mt-1">
+                  <span className="block text-xs font-normal text-[#5A5A5A] mt-1">
                     +{coursesCount} courses
                   </span>
                 </h3>

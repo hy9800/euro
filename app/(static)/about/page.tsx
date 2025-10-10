@@ -317,7 +317,7 @@ export default function AboutPage() {
               <h2 className="font-semibold text-2xl md:text-4xl text-black">
                 Geographical <span className="text-[#3E5EC0]">Coverage</span>
               </h2>
-              <p className="text-[#7C7B7B]">find our services in 25 cities around the world</p>
+              <p className="text-[#5A5A5A]">find our services in 25 cities around the world</p>
               <Button className="max-w-[200px]">
                 See All
                 <i className="fa-solid fa-chevron-right ml-2"></i>

@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <footer 
-      className="bg-[#2A3453] text-white/50 py-10"
+      className="bg-[#2A3453] text-white/75 py-10"
       itemScope
       itemType="https://schema.org/Organization"
       role="contentinfo"
@@ -39,7 +39,7 @@ export default function Footer() {
           >
             <Link 
               href="/" 
-              className="text-white/50"
+              className="text-white/75"
               aria-label="EuroQuest International - Return to homepage"
             >
               <Image
@@ -109,7 +109,7 @@ export default function Footer() {
               {popularCategories.map((category) => (
                 <li key={category.slug}>
                   <Link
-                    className="text-white/50 hover:text-white transition-colors duration-300"
+                    className="text-white/75 hover:text-white transition-colors duration-300"
                     href={`/training-courses/${category.slug}`}
                     aria-label={`View ${category.name} training courses`}
                   >
@@ -135,7 +135,7 @@ export default function Footer() {
               {quickAccessLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    className="text-white/50 hover:text-white transition-colors duration-300"
+                    className="text-white/75 hover:text-white transition-colors duration-300"
                     href={link.href}
                     aria-label={`Navigate to ${link.label}`}
                   >

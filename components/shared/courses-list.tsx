@@ -17,32 +17,30 @@ export default function CoursesList({
   const hasResults = filteredCourses.length > 0;
   
   return (
-    <section 
+    <ul 
       id="courses-list"
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-4 list-none p-0 m-0"
       itemScope
       itemType="https://schema.org/ItemList"
       aria-label={hasResults ? `Training courses - ${filteredCourses.length} results found` : "No courses found"}
-      role="list"
     >
       {/* Schema.org metadata */}
       <meta itemProp="numberOfItems" content={filteredCourses.length.toString()} />
       
       {hasResults ? (
         filteredCourses.map((course: Course, index: number) => (
-          <div 
+          <li 
             key={course.slug}
             itemProp="itemListElement"
             itemScope
             itemType="https://schema.org/ListItem"
-            role="listitem"
           >
             <meta itemProp="position" content={(index + 1).toString()} />
             <CourseCard course={course} citySlug={citySlug} />
-          </div>
+          </li>
         ))
       ) : (
-        <div 
+        <li 
           className="w-full px-6 py-8 flex flex-col items-center justify-center gap-3 shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-lg bg-gradient-to-br from-[#f8fafc] to-[#edf2f7]"
           role="status"
           aria-live="polite"
@@ -67,8 +65,8 @@ export default function CoursesList({
           <p className="text-[#718096] text-sm text-center">
             Try adjusting your filters or search terms to find what you're looking for.
           </p>
-        </div>
+        </li>
       )}
-    </section>
+    </ul>
   );
 }

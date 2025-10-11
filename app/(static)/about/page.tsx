@@ -169,6 +169,7 @@ export default function AboutPage() {
               width={200}
               height={200}
               className="absolute -top-7 -left-44 z-[-1] hidden lg:block"
+              style={{ maxWidth: '100%', height: 'auto' }}
               aria-hidden="true"
               loading="lazy"
             />
@@ -222,7 +223,8 @@ export default function AboutPage() {
                       alt={`${service.title} icon`}
                       width={80}
                       height={80}
-                      className="w-full h-full"
+                      className="w-full h-auto"
+                      style={{ maxWidth: '100%', height: 'auto' }}
                       loading="lazy"
                     />
                   </div>
@@ -294,9 +296,10 @@ export default function AboutPage() {
               <Image
                 src="/assets/images/about-contact-img.png"
                 alt="Professional growth and development at EuroQuest International"
-                width={400}
-                height={400}
+                width={828}
+                height={483}
                 className="w-full h-auto"
+                style={{ maxWidth: '100%', height: 'auto' }}
                 loading="lazy"
               />
             </figure>

@@ -7,13 +7,30 @@
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "orientation": "portrait-primary",
+  
+  "_comment_icons": "IMPORTANT: Icons currently simplified. Run 'node scripts/generate-icons.js' to create proper PWA icons, then update this section",
   "icons": [
     {
       "src": "/favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
+    },
+    {
+      "_comment": "Uncomment after running generate-icons.js",
+      "src": "/assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "_comment": "Uncomment after running generate-icons.js",
+      "src": "/assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
+  
   "categories": [
     "education",
     "business",

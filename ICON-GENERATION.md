@@ -69,38 +69,74 @@ Use [Maskable.app](https://maskable.app/editor) to test and create maskable icon
 3. ⚠️ Create maskable versions if needed
 4. ⚠️ Test PWA install on Android/iOS
 
-## Current Solution ✅
+## ⚠️ Current Status
 
-The manifest.json has been updated to:
-- Use only existing icons with single, realistic size declarations
-- Include favicon.ico for browser compatibility
-- Use 192x192 for mini-logo.png (standard PWA icon)
-- Removed duplicate icon references that were causing size mismatch errors
+**The manifest.json icons section has been temporarily simplified to only use favicon.ico**
 
-## Next Steps 🚀
+This resolves the immediate error but means:
+- ❌ No PWA icons (192x192, 512x512)
+- ❌ Won't show proper icon when "Add to Home Screen"
+- ✅ No manifest errors in console
+- ✅ Works on all browsers
 
-To achieve full PWA icon support:
+**You MUST generate proper icons before production deployment!**
 
-1. **Generate 512x512 icon** (required for high-res Android)
-   ```bash
-   # Use ImageMagick or similar tool
-   convert mini-logo.png -resize 512x512 icon-512.png
-   ```
+## Quick Fix - Automated Icon Generation 🚀
 
-2. **Add to manifest.json**:
-   ```json
-   {
-     "src": "/assets/icons/icon-512.png",
-     "sizes": "512x512",
-     "type": "image/png",
-     "purpose": "any"
-   }
-   ```
+We've created an automated script to generate all required icons!
 
-3. **Test PWA Installation**:
-   - Chrome DevTools → Application → Manifest
-   - Check for warnings
-   - Test "Add to Home Screen" on mobile
+### Step 1: Install Sharp (Image Processing)
+```bash
+npm install sharp --save-dev
+```
+
+### Step 2: Run the Generator Script
+```bash
+node scripts/generate-icons.js
+```
+
+This will:
+- ✅ Read `/public/assets/images/mini-logo.png`
+- ✅ Generate icons in all required sizes (192x192, 512x512, 180x180, etc.)
+- ✅ Save them to `/public/assets/icons/`
+- ✅ Maintain transparency and quality
+
+### Step 3: Update manifest.json
+
+Replace the `icons` section with:
+
+```json
+"icons": [
+  {
+    "src": "/favicon.ico",
+    "sizes": "48x48",
+    "type": "image/x-icon"
+  },
+  {
+    "src": "/assets/icons/icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png",
+    "purpose": "any"
+  },
+  {
+    "src": "/assets/icons/icon-512x512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "any"
+  },
+  {
+    "src": "/assets/icons/icon-180x180.png",
+    "sizes": "180x180",
+    "type": "image/png",
+    "purpose": "any"
+  }
+]
+```
+
+### Step 4: Test PWA Installation
+- Chrome DevTools → Application → Manifest
+- Check for warnings (should be none!)
+- Test "Add to Home Screen" on mobile
 
 ## Important Note ⚠️
 

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import ContactPopup from "@/components/popups/contact";
 import { usePopupStore } from "@/store/popup-store";
 
 export default function Navbar() {
@@ -61,7 +60,11 @@ export default function Navbar() {
   return (
     <>
       {/* Main Navbar */}
-      <nav className="fixed top-0 left-0 w-full h-[70px] bg-white flex items-center z-[100]">
+      <nav 
+        className="fixed top-0 left-0 w-full h-[70px] bg-white flex items-center z-[100]"
+        aria-label="Main navigation"
+        role="navigation"
+      >
         <div className="container mx-auto">
           <div className="w-full flex items-center justify-between">
             <div className="flex items-center gap-4 max-w-[280px] justify-between">
@@ -81,7 +84,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <ul className="hidden lg:flex gap-6">
+            <ul className="hidden lg:flex gap-6" role="list" aria-label="Main navigation">
               {navLinks.map((link) => (
                 <li
                   key={link.href}
@@ -107,6 +110,7 @@ export default function Navbar() {
                 <button
                   onClick={() => openContact()}
                   className="text-[#314EA9] transition-colors duration-300 font-semibold text-[15px]"
+                  aria-label="Open contact form"
                   suppressHydrationWarning={true}
                 >
                   Contact Us
@@ -118,8 +122,11 @@ export default function Navbar() {
               <button
                 className="w-11 h-11 rounded-xl border-2 border-[#DDE9FF] flex items-center justify-center cursor-pointer bg-gradient-to-br from-[#f8faff] to-[#f0f4ff] outline-none transition-all duration-300 ease-out shadow-[0_2px_8px_rgba(49,78,169,0.1)] hover:shadow-lg"
                 onClick={openSidebar}
+                aria-label="Open navigation menu"
+                aria-expanded={isSidebarOpen}
+                aria-controls="mobile-navigation"
               >
-                <Menu className="w-5 h-5 font-semibold text-blue-600" />
+                <Menu className="w-5 h-5 font-semibold text-blue-600" aria-hidden="true" />
               </button>
             </div>
             <div className="hidden md:block"></div>
@@ -135,6 +142,7 @@ export default function Navbar() {
             <motion.div
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
               onClick={closeSidebar}
+              aria-hidden="true"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -143,7 +151,11 @@ export default function Navbar() {
 
             {/* Main Sidebar Container */}
             <motion.div
+              id="mobile-navigation"
               className="fixed top-0 right-0 w-80 h-screen bg-gradient-to-br from-white to-slate-50 shadow-2xl z-[9999] flex flex-col border-l border-blue-200/20 sm:w-80 max-[480px]:w-full"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -164,7 +176,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between mb-4">
                   <Image
                     src="/assets/images/logo.svg"
-                    alt="Logo"
+                    alt="EuroQuest International Training Logo"
                     width={160}
                     height={50}
                     loading="lazy"
@@ -173,12 +185,12 @@ export default function Navbar() {
                   <motion.button
                     className="w-10 h-10 border-none rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-blue-500/15 hover:scale-105"
                     onClick={closeSidebar}
-                    aria-label="Close menu"
+                    aria-label="Close navigation menu"
                     whileHover={{ scale: 1.1, rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-6 h-6" aria-hidden="true" />
                   </motion.button>
                 </div>
               </motion.div>
@@ -190,7 +202,10 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
               >
-                <nav className="flex-1 py-6 overflow-y-auto">
+                <nav 
+                  className="flex-1 py-6 overflow-y-auto"
+                  aria-label="Mobile navigation links"
+                >
                   {navLinks.map((link, index) => (
                     <motion.div
                       key={link.href}
@@ -258,6 +273,7 @@ export default function Navbar() {
                           openContact();
                         }}
                         className="w-full px-5 py-3 text-start rounded-2xl text-[#3E5EC0] border-none font-semibold text-base cursor-pointer transition-all duration-300"
+                        aria-label="Open contact form"
                         suppressHydrationWarning={true}
                       >
                         <span className="font-medium">
@@ -292,6 +308,8 @@ export default function Navbar() {
                           console.log('Language switch to Arabic');
                         }}
                         className="font-cairo w-full px-5 py-3 text-center rounded-2xl bg-blue-500/10 text-[#3E5EC0] font-bold text-base cursor-pointer transition-all duration-300 hover:shadow-lg"
+                        aria-label="Switch to Arabic courses"
+                        lang="ar"
                         suppressHydrationWarning={true}
                       >
                         <span className="font-medium">

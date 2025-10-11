@@ -65,10 +65,13 @@ export default function Navbar() {
         <div className="container mx-auto">
           <div className="w-full flex items-center justify-between">
             <div className="flex items-center gap-4 max-w-[280px] justify-between">
-              <Link href="/">
+              <Link 
+                href="/"
+                aria-label="EuroQuest International - Return to homepage"
+              >
                 <Image
                   src="/assets/images/logo.svg"
-                  alt="Logo"
+                  alt="EuroQuest International Training Logo"
                   width={120}
                   height={40}
                   className="w-[160px] lg:w-[190px] lg:h-[50px]"

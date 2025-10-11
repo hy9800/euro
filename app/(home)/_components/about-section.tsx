@@ -115,29 +115,24 @@ export default function AboutSection({ className = "" }: AboutSectionProps) {
             {/* Button */}
             <Link
               href="/about"
-              className="inline-block"
+              className="inline-flex items-center gap-3 bg-[#3E5EC0] hover:bg-[#2d4aa7] text-white px-8 py-3 rounded-lg font-semibold text-base transform group transition-colors duration-300"
               aria-label="Read more about EuroQuest International training institute"
             >
-              <button
-                className="bg-[#3E5EC0] hover:bg-[#2d4aa7] !mt-0 text-white px-8 py-3 rounded-lg font-semibold text-base transform flex items-center gap-3 group transition-colors duration-300"
-                suppressHydrationWarning={true}
+              Read More
+              <svg
+                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
               >
-                Read More
-                <svg
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
             </Link>
           </div>
 

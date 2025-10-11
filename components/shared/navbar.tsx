@@ -72,8 +72,10 @@ export default function Navbar() {
                 <Image
                   src="/assets/images/logo.svg"
                   alt="EuroQuest International Training Logo"
-                  width={120}
-                  height={40}
+                  width={190}
+                  height={50}
+                  priority
+                  fetchPriority="high"
                   className="w-[160px] lg:w-[190px] lg:h-[50px]"
                 />
               </Link>
@@ -165,6 +167,7 @@ export default function Navbar() {
                     alt="Logo"
                     width={160}
                     height={50}
+                    loading="lazy"
                     className="w-40 h-auto max-[480px]:w-36"
                   />
                   <motion.button

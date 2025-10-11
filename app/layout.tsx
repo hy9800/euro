@@ -12,11 +12,15 @@ const exo = Exo({
   variable: "--font-exo",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 const cairo = Cairo({
   variable: "--font-cairo",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -110,6 +114,15 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://api.euroqst.com" />
+        
+        {/* Preload critical assets */}
+        <link
+          rel="preload"
+          href="/assets/images/logo.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+        
         <meta name="theme-color" content="#ffffff" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

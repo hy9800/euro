@@ -125,13 +125,6 @@ export default function RootLayout({
           type="image/svg+xml"
         />
         
-        {/* Preload critical CSS */}
-        <link 
-          rel="preload" 
-          href="/_next/static/css/app/layout.css" 
-          as="style"
-          type="text/css"
-        />
         
         {/* Resource hints for performance */}
         <link rel="dns-prefetch" href="https://vercel.com" />

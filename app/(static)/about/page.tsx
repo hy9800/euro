@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { Home, ChevronRight } from 'lucide-react';
+import { Home, ChevronRight } from "lucide-react";
 import { services } from "@/constants";
 import { getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
@@ -9,22 +9,25 @@ import { DOMAIN } from "@/constants/domain";
 
 // Lazy load non-critical components
 const HeroBanner = dynamic(() => import("@/components/shared/hero-banner"), {
-  loading: () => <div className="min-h-[230px] mt-[70px] bg-gradient-to-r from-blue-50 to-blue-100" />
+  loading: () => (
+    <div className="min-h-[230px] mt-[70px] bg-gradient-to-r from-blue-50 to-blue-100" />
+  ),
 });
 const SectionTitle = dynamic(() => import("@/components/shared/section-title"));
 const Button = dynamic(() => import("@/components/ui/button"));
-const Schema = dynamic(() => import("@/components/shared/schema"), { ssr: true });
+const Schema = dynamic(() => import("@/components/shared/schema"), {
+  ssr: true,
+});
 
 const breadcrumbs = [
-  { label: '', href: '/', icon: <Home width={16} height={16}/> },
-  { label: 'About', href: '/about' }
+  { label: "", href: "/", icon: <Home width={16} height={16} /> },
+  { label: "About", href: "/about" },
 ];
-
 
 // Generate metadata dynamically
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const seoData = await getSeoData('about');
+    const seoData = await getSeoData("about");
     const seo = seoData.seo;
     const baseUrl = DOMAIN;
 
@@ -57,13 +60,13 @@ export async function generateMetadata(): Promise<Metadata> {
             alt: seo.meta_title,
           },
         ],
-        type: 'website',
+        type: "website",
         url: seo.canonical || `${baseUrl}/about`,
         siteName: "EuroQuest International",
         locale: "en_US",
       },
       twitter: {
-        card: 'summary_large_image',
+        card: "summary_large_image",
         site: "@euroquest",
         creator: "@euroquest",
         title: seo.meta_title,
@@ -72,17 +75,20 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       alternates: {
         canonical: seo.canonical || `${baseUrl}/about`,
-      }
+      },
     };
   } catch (error) {
-    console.error('Error generating metadata for about page:', error);
+    console.error("Error generating metadata for about page:", error);
     const baseUrl = DOMAIN;
-    
+
     // Fallback metadata
     return {
-      title: "About EuroQuest International | Professional Training & Development",
-      description: "Learn about EuroQuest International, a leading educational institute providing high-quality training and learning experiences. Founded in 2015 with over 25 years of expertise.",
-      keywords: "about euroquest, training institute, professional development, educational services, management training",
+      title:
+        "About EuroQuest International | Professional Training & Development",
+      description:
+        "Learn about EuroQuest International, a leading educational institute providing high-quality training and learning experiences. Founded in 2015 with over 25 years of expertise.",
+      keywords:
+        "about euroquest, training institute, professional development, educational services, management training",
       authors: [{ name: "EuroQuest International" }],
       creator: "EuroQuest International",
       publisher: "EuroQuest International",
@@ -113,35 +119,52 @@ export default function AboutPage() {
           "@type": "ImageObject",
           url: `${baseUrl}/assets/images/logo.png`,
           width: 250,
-          height: 60
+          height: 60,
         },
-        description: "Leading professional training institute providing high-quality training and learning experiences since 2015",
+        description:
+          "Leading professional training institute providing high-quality training and learning experiences since 2015",
         foundingDate: "2015",
-        areaServed: ["Dubai", "London", "Barcelona", "Istanbul", "Vienna", "Paris", "Geneva"],
-        slogan: "Empowering Professional Excellence Through World-Class Training",
-        knowsAbout: ["Professional Training", "Management Development", "Leadership Development", "Corporate Training", "Professional Development"]
+        areaServed: [
+          "Dubai",
+          "London",
+          "Barcelona",
+          "Istanbul",
+          "Vienna",
+          "Paris",
+          "Geneva",
+        ],
+        slogan:
+          "Empowering Professional Excellence Through World-Class Training",
+        knowsAbout: [
+          "Professional Training",
+          "Management Development",
+          "Leadership Development",
+          "Corporate Training",
+          "Professional Development",
+        ],
       },
       {
         "@type": "AboutPage",
         "@id": `${baseUrl}/about#webpage`,
         url: `${baseUrl}/about`,
         name: "About EuroQuest International",
-        description: "Learn about EuroQuest International, a leading educational institute providing high-quality training and learning experiences. Founded in 2015 with over 25 years of expertise.",
+        description:
+          "Learn about EuroQuest International, a leading educational institute providing high-quality training and learning experiences. Founded in 2015 with over 25 years of expertise.",
         isPartOf: { "@id": `${baseUrl}/#website` },
         about: { "@id": `${baseUrl}/#organization` },
-        inLanguage: "en-US"
-      }
-    ]
+        inLanguage: "en-US",
+      },
+    ],
   };
 
   return (
-    <> 
+    <>
       {/* Optimized Schema.org JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
       />
-      
+
       {/* Hero Banner */}
       <header>
         <HeroBanner
@@ -160,13 +183,13 @@ export default function AboutPage() {
         <meta itemProp="foundingDate" content="2015" />
 
         {/* About Section */}
-        <section 
+        <section
           className="bg-white md:py-12 py-10"
           aria-labelledby="who-is-euroquest"
         >
           <Container className="flex flex-col gap-12 relative z-10">
-            <Image 
-              src="/assets/images/bullets-shape.svg" 
+            <Image
+              src="/assets/images/bullets-shape.svg"
               alt=""
               width={200}
               height={200}
@@ -174,21 +197,24 @@ export default function AboutPage() {
               aria-hidden="true"
             />
             <article className="w-full">
-              <SectionTitle title="Who is" highlight="EuroQuest" className="!mb-4" />
-              <p 
+              <header className="!mb-4">
+                <SectionTitle title="Who is" highlight="EuroQuest" />
+              </header>
+              <p
                 className="font-normal text-base leading-7"
                 itemProp="description"
               >
-                <strong>EuroQuest International</strong> is a leading educational institute that
-                provides high-quality training and learning experiences tailored to
-                meet our clients' needs. We aim to facilitate both professional and
-                personal excellence while enhancing organizational effectiveness. By
-                developing and delivering world-class management development
-                services, we align with the latest management thinking and
-                strategies. We strive to transform personal, team, and company
-                performance through high-powered solutions that empower managers and
-                develop leaders. We are committed to delivering services that are
-                always relevant and applicable, maintaining a customer-focused
+                <strong>EuroQuest International</strong> is a leading
+                educational institute that provides high-quality training and
+                learning experiences tailored to meet our clients' needs. We aim
+                to facilitate both professional and personal excellence while
+                enhancing organizational effectiveness. By developing and
+                delivering world-class management development services, we align
+                with the latest management thinking and strategies. We strive to
+                transform personal, team, and company performance through
+                high-powered solutions that empower managers and develop
+                leaders. We are committed to delivering services that are always
+                relevant and applicable, maintaining a customer-focused
                 approach.
               </p>
             </article>
@@ -196,7 +222,7 @@ export default function AboutPage() {
         </section>
 
         {/* Services Section */}
-        <section 
+        <section
           className="md:py-12 py-10"
           aria-labelledby="our-services"
           itemProp="makesOffer"
@@ -205,21 +231,21 @@ export default function AboutPage() {
         >
           <Container className="flex items-center justify-between gap-8 lg:flex-nowrap flex-wrap">
             <SectionTitle title="Our" highlight="Services" />
-            <nav 
+            <nav
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
               aria-label="Professional training services offered"
             >
               {services.map((service, index) => (
-                <article 
-                  key={index} 
+                <article
+                  key={index}
                   className="h-full flex flex-col justify-between text-center items-center gap-2.5"
                   itemProp="itemListElement"
                   itemScope
                   itemType="https://schema.org/Service"
                 >
                   <div className="w-20 h-20">
-                    <Image 
-                      src={service.icon} 
+                    <Image
+                      src={service.icon}
                       alt={`${service.title} icon`}
                       width={80}
                       height={80}
@@ -227,13 +253,13 @@ export default function AboutPage() {
                     />
                   </div>
                   <div className="flex-1">
-                    <h3 
+                    <h3
                       className="text-[#3E5EC0] text-lg font-bold mb-4"
                       itemProp="name"
                     >
                       {service.title}
                     </h3>
-                    <p 
+                    <p
                       className="text-[#757575] leading-6"
                       itemProp="description"
                     >
@@ -247,36 +273,43 @@ export default function AboutPage() {
         </section>
 
         {/* Goals Section */}
-        <section 
+        <section
           className="bg-[#F0FAF7] md:py-12 py-10"
           aria-labelledby="our-goals"
         >
           <Container>
             <article className="w-full">
-              <SectionTitle title="Our" highlight="Goals" className="!mb-4" />
+              <header className="!mb-4">
+                <SectionTitle title="Our" highlight="Goals" />
+              </header>
               <p className="font-normal text-base leading-7">
-                <strong>Provide Human Resources</strong> with the knowledge, skills and trends that
-                enhance performance. <strong>Develop the professional practices</strong> of trainees
-                in alignment with the latest professional developments in the field
-                of training. <strong>Increase the number of training centers worldwide.</strong>
+                <strong>Provide Human Resources</strong> with the knowledge,
+                skills and trends that enhance performance.{" "}
+                <strong>Develop the professional practices</strong> of trainees
+                in alignment with the latest professional developments in the
+                field of training.{" "}
+                <strong>
+                  Increase the number of training centers worldwide.
+                </strong>
                 Expand professional cooperation relations with the international
                 institutions concerned with training and human resources
-                development. <strong>Continue to be an active leader</strong> in capacity building at
-                both the regional and international levels. Seek to obtain
-                international professional accreditation for the training programs.
+                development. <strong>Continue to be an active leader</strong> in
+                capacity building at both the regional and international levels.
+                Seek to obtain international professional accreditation for the
+                training programs.
               </p>
             </article>
           </Container>
         </section>
 
         {/* About Contact Section */}
-        <section 
+        <section
           className="bg-[#F2F8FF] md:py-12 py-10"
           aria-labelledby="contact-cta"
         >
           <Container className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
             <div className="max-w-[540px] text-center lg:text-left">
-              <h2 
+              <h2
                 id="contact-cta"
                 className="text-2xl md:text-4xl font-semibold leading-tight mb-8"
               >

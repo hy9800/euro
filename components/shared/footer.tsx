@@ -46,8 +46,8 @@ export default function Footer() {
               <Image
                 src="/assets/images/logo.svg"
                 alt="EuroQuest International Training Logo"
-                width={190}
-                height={50}
+                width={175}
+                height={48}
                 className="w-[190px] h-auto mb-8 mt-2"
                 style={{ maxWidth: '100%', height: 'auto' }}
                 itemProp="logo"

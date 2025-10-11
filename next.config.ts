@@ -48,9 +48,17 @@ const nextConfig: NextConfig = {
   
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'react-icons'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'react-icons', '@tanstack/react-query'],
     optimizeCss: true,
     webpackMemoryOptimizations: true,
+  },
+  
+  // Modularize imports to reduce bundle size
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+      skipDefaultConversion: true,
+    },
   },
   
   // Production optimizations

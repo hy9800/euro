@@ -1,14 +1,19 @@
 import { Metadata } from "next";
-import HeroBanner from "@/components/shared/hero-banner";
-import SectionTitle from "@/components/shared/section-title";
-import Button from "@/components/ui/button";
-import { Home } from 'lucide-react';
+import dynamic from "next/dynamic";
+import { Home, ChevronRight } from 'lucide-react';
 import { services } from "@/constants";
 import { getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
-import Schema from "@/components/shared/schema";
 import Image from "next/image";
 import { DOMAIN } from "@/constants/domain";
+
+// Lazy load non-critical components
+const HeroBanner = dynamic(() => import("@/components/shared/hero-banner"), {
+  loading: () => <div className="min-h-[230px] mt-[70px] bg-gradient-to-r from-blue-50 to-blue-100" />
+});
+const SectionTitle = dynamic(() => import("@/components/shared/section-title"));
+const Button = dynamic(() => import("@/components/ui/button"));
+const Schema = dynamic(() => import("@/components/shared/schema"), { ssr: true });
 
 const breadcrumbs = [
   { label: '', href: '/', icon: <Home width={16} height={16}/> },
@@ -95,49 +100,46 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AboutPage() {
   const baseUrl = DOMAIN;
 
-  // Organization Schema
-  const organizationSchema = {
+  // Combined Organization and AboutPage Schema
+  const combinedSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "EuroQuest International",
-    url: baseUrl,
-    logo: `${baseUrl}/assets/images/logo.png`,
-    description: "Leading professional training institute providing high-quality training and learning experiences since 2015",
-    foundingDate: "2015",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "Multiple International Locations",
-    },
-    areaServed: [
-      "Dubai", "London", "Barcelona", "Istanbul", "Vienna", "Paris", "Geneva"
-    ],
-    numberOfEmployees: {
-      "@type": "QuantitativeValue",
-      value: "25+",
-    },
-    slogan: "Empowering Professional Excellence Through World-Class Training",
-    knowsAbout: [
-      "Professional Training",
-      "Management Development",
-      "Leadership Development",
-      "Corporate Training",
-      "Professional Development"
-    ],
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${baseUrl}/#organization`,
+        name: "EuroQuest International",
+        url: baseUrl,
+        logo: {
+          "@type": "ImageObject",
+          url: `${baseUrl}/assets/images/logo.png`,
+          width: 250,
+          height: 60
+        },
+        description: "Leading professional training institute providing high-quality training and learning experiences since 2015",
+        foundingDate: "2015",
+        areaServed: ["Dubai", "London", "Barcelona", "Istanbul", "Vienna", "Paris", "Geneva"],
+        slogan: "Empowering Professional Excellence Through World-Class Training",
+        knowsAbout: ["Professional Training", "Management Development", "Leadership Development", "Corporate Training", "Professional Development"]
+      },
+      {
+        "@type": "AboutPage",
+        "@id": `${baseUrl}/about#webpage`,
+        url: `${baseUrl}/about`,
+        name: "About EuroQuest International",
+        description: "Learn about EuroQuest International, a leading educational institute providing high-quality training and learning experiences. Founded in 2015 with over 25 years of expertise.",
+        isPartOf: { "@id": `${baseUrl}/#website` },
+        about: { "@id": `${baseUrl}/#organization` },
+        inLanguage: "en-US"
+      }
+    ]
   };
 
   return (
     <> 
-      {/* Schema.org JSON-LD for Organization */}
+      {/* Optimized Schema.org JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-
-      <Schema 
-        pageType="about"
-        pageTitle="About EuroQuest International"
-        pageDescription="Learn about EuroQuest International, a leading educational institute providing high-quality training and learning experiences. Founded in 2015 with over 25 years of expertise."
-        pageUrl={`${baseUrl}/about`}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
       />
       
       {/* Hero Banner */}
@@ -169,9 +171,7 @@ export default function AboutPage() {
               width={200}
               height={200}
               className="absolute -top-7 -left-44 z-[-1] hidden lg:block"
-              style={{ maxWidth: '100%', height: 'auto' }}
               aria-hidden="true"
-              loading="lazy"
             />
             <article className="w-full">
               <SectionTitle title="Who is" highlight="EuroQuest" className="!mb-4" />
@@ -224,8 +224,6 @@ export default function AboutPage() {
                       width={80}
                       height={80}
                       className="w-full h-auto"
-                      style={{ maxWidth: '100%', height: 'auto' }}
-                      loading="lazy"
                     />
                   </div>
                   <div className="flex-1">
@@ -288,7 +286,7 @@ export default function AboutPage() {
               <div className="flex justify-center lg:justify-start">
                 <Button>
                   <span>Contact Us</span>
-                  <i className="fa-solid fa-chevron-right ml-2" aria-hidden="true"></i>
+                  <ChevronRight className="ml-2 w-4 h-4" aria-hidden="true" />
                 </Button>
               </div>
             </div>
@@ -299,8 +297,7 @@ export default function AboutPage() {
                 width={828}
                 height={483}
                 className="w-full h-auto"
-                style={{ maxWidth: '100%', height: 'auto' }}
-                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 400px"
               />
             </figure>
           </Container>

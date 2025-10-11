@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Breadcrumb, { BreadcrumbItem } from "../ui/breadcrumb";
 import Container from "./container";
 
@@ -11,6 +12,7 @@ interface HeroBannerProps {
   typewriterSpeed?: number;
   typewriterDelay?: number;
   typewriterLoop?: boolean;
+  priority?: boolean;
 }
 
 /**
@@ -24,6 +26,7 @@ export default function HeroBanner({
   description,
   breadcrumbs = [],
   className = "",
+  priority = true,
 }: HeroBannerProps) {
   // Generate descriptive alt text based on title
   const imageAlt = `${title} - EuroQuest International Training`;
@@ -44,13 +47,15 @@ export default function HeroBanner({
       itemType="https://schema.org/WebPageElement"
       itemProp="mainContentOfPage"
     >
-      {/* Background Image */}
-      <img
+      {/* Background Image - Optimized with Next.js Image */}
+      <Image
         src={backgroundImage}
         alt={imageAlt}
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        loading="eager"
-        fetchPriority="high"
+        fill
+        priority={priority}
+        quality={85}
+        sizes="100vw"
+        className="object-cover z-0"
         itemProp="image"
       />
 

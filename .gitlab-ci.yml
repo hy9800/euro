@@ -11,7 +11,7 @@ before_script:
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - echo "Testing VPS_HOST $VPS_HOST on port 7822"
-  - nc -zv $VPS_HOST 7822 || (echo "❌ SSH port 7822 unreachable" && exit 1)
+  # - nc -zv $VPS_HOST 7822 || (echo "❌ SSH port 7822 unreachable" && exit 1)
   - ssh-keyscan -p 7822 -v $VPS_HOST >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
 

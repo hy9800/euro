@@ -77,7 +77,24 @@ const nextConfig: NextConfig = {
   // 🔁 التحويلات (Redirects) - حماية SEO من الروابط القديمة
   async redirects() {
     return [
-      // ✅ تحويل جميع الروابط الإنجليزية إلى الجذر
+      // ✅ تحويل الروابط الإنجليزية المحددة أولاً (الأكثر تحديداً)
+      {
+        source: '/en/category-detail/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/en/course-detail/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/en/courses/:slug*',
+        destination: '/training-course/:slug*',
+        permanent: true,
+      },
+
+      // ✅ تحويل جميع الروابط الإنجليزية الأخرى إلى الجذر
       {
         source: '/en/:path*',
         destination: '/',
@@ -101,7 +118,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // ✅ تحويل صفحات التفاصيل القديمة إلى الجذر
+      // ✅ تحويل صفحات التفاصيل القديمة (بدون لغة) إلى الجذر
       {
         source: '/category-detail/:path*',
         destination: '/',
@@ -113,7 +130,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // ✅ تحويل صفحات الدورات القديمة
+      // ✅ تحويل صفحات الدورات القديمة (بدون لغة)
       {
         source: '/courses/:slug*',
         destination: '/training-course/:slug*',

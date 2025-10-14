@@ -73,72 +73,8 @@ const nextConfig: NextConfig = {
       },
     },
   }),
-  
-  // 🔁 التحويلات (Redirects) - حماية SEO من الروابط القديمة
-  async redirects() {
-    return [
-      // ✅ تحويل الروابط الإنجليزية المحددة أولاً (الأكثر تحديداً)
-      {
-        source: '/en/category-detail/:path*',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/en/course-detail/:path*',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/en/courses/:slug*',
-        destination: '/training-course/:slug*',
-        permanent: true,
-      },
 
-      // ✅ تحويل جميع الروابط الإنجليزية الأخرى إلى الجذر
-      {
-        source: '/en/:path*',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/en',
-        destination: '/',
-        permanent: true,
-      },
 
-      // ✅ تحويل جميع الروابط العربية إلى النطاق الفرعي
-      {
-        source: '/ar/:path*',
-        destination: 'https://ar.euroqst.com/:path*',
-        permanent: true,
-      },
-      {
-        source: '/ar',
-        destination: 'https://ar.euroqst.com',
-        permanent: true,
-      },
-
-      // ✅ تحويل صفحات التفاصيل القديمة (بدون لغة) إلى الجذر
-      {
-        source: '/category-detail/:path*',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/course-detail/:path*',
-        destination: '/',
-        permanent: true,
-      },
-
-      // ✅ تحويل صفحات الدورات القديمة (بدون لغة)
-      {
-        source: '/courses/:slug*',
-        destination: '/training-course/:slug*',
-        permanent: true,
-      },
-    ];
-  },
-  
   // 🛡️ Headers for better SEO and security
   async headers() {
     return [

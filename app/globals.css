@@ -9,6 +9,10 @@
   --font-jost: 'Jost', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-exo), "Exo", sans-serif;
   font-feature-settings: "kern" 1;

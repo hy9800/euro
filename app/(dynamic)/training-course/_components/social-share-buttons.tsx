@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 
 interface SocialShareButtonsProps {
   courseUrl: string;
@@ -63,6 +63,18 @@ export default function SocialShareButtons({
         className="social-btn linkedin-btn flex items-center justify-center w-10 h-10 bg-[#0a66c2] text-white rounded-lg no-underline font-medium text-lg transition-all duration-300 shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:bg-[#004182] hover:text-white hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:no-underline"
       >
         <FaLinkedinIn />
+      </Link>
+
+      {/* Whatsapp */}
+      <Link
+        href={`https://wa.me/?text=${encodeURIComponent(
+          `${courseTitle}\n${fullUrl}`
+        )}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-btn whatsapp-btn flex items-center justify-center w-10 h-10 bg-[#25d366] text-white rounded-lg no-underline font-medium text-lg transition-all duration-300 shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:bg-[#128c7e] hover:text-white hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:no-underline"
+      >
+        <FaWhatsapp />
       </Link>
     </div>
   );

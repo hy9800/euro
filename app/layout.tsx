@@ -7,7 +7,6 @@ import { Toaster } from "sonner";
 import Footer from "@/components/shared/footer";
 import PopupProvider from "@/components/popups/popup-provider";
 
-
 const exo = Exo({
   variable: "--font-exo",
   subsets: ["latin"],

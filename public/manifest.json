@@ -1,0 +1,27 @@
+{
+  "name": "EuroQuest International Training",
+  "short_name": "EuroQuest",
+  "description": "Leading provider of professional training courses across management, HR, IT, finance, and quality. Serving 15,000+ professionals since 2015.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": [
+    "education",
+    "business",
+    "productivity"
+  ],
+  "dir": "ltr",
+  "lang": "en",
+  "scope": "/",
+  "prefer_related_applications": false
+}
+

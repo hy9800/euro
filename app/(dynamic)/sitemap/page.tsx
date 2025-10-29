@@ -4,7 +4,6 @@ import { Home } from "lucide-react";
 import { Metadata } from "next";
 import Schema from "@/components/shared/schema";
 
-
 export const metadata: Metadata = {
   title: "Sitemap | EuroQuest International",
   description:

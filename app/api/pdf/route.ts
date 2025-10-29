@@ -79,7 +79,13 @@ export async function POST(request: NextRequest) {
         </div>
       `,
       footerTemplate: `
+<<<<<<< HEAD
         <div style="font-size: 9px; width: 100%; display: flex; justify-content: center; align-items: center; color: #6b7280; padding: 5px 7px; border-top: 1px solid #e5e7eb;">
+=======
+        <div style="font-size: 9px; width: 100%; display: flex; justify-content: space-between; align-items: center; color: #6b7280; padding: 5px 7px; border-top: 1px solid #e5e7eb;">
+          <span>EuroQuest International</span>
+          <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
+>>>>>>> 61038dd4883310596ad10439a89641aaf8a2406a
           <span>Šancová 3568/61 Mestská časť Nové Mesto Bratislava 831 04 Slovakia</span>
         </div>
       `,

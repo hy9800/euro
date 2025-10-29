@@ -15,7 +15,6 @@ export const createSearchFields = (
 ): FieldConfig[] => {
   const uniqueMonths = getUniqueMonths(timings);
   const uniqueCities = getUniqueCities(timings, cities);
-
   if (pageType === "city-course") {
     // For city course page: only month select
     return [

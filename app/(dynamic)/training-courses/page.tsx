@@ -7,7 +7,6 @@ import { getCategories, getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
 import Schema from "@/components/shared/schema";
 
-
 // Generate metadata dynamically for SEO optimization
 export async function generateMetadata(): Promise<Metadata> {
   try {

@@ -11,7 +11,7 @@ export default function OurAchievements() {
           <SectionTitle
             title="Our"
             highlight="Achievements"
-            className="!mb-10"
+            className="!mb-8"
           />
 
           {/* Achievements Content */}

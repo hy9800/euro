@@ -120,13 +120,6 @@ export default function Navbar() {
                 <Menu className="w-5 h-5 font-semibold text-blue-600" />
               </button>
             </div>
-            <div className="hidden md:block">
-              <Link href="https://ar.euroqst.com" className="hidden md:block">
-                <button className="font-cairo text-[#314EA9] border border-[#314EA9] py-2 px-4 rounded-full transition-colors duraton-300 font-medium text-sm relative cursor-pointer hover:bg-[#314ea9] hover:text-white">
-                  الدورات العربية
-                </button>
-              </Link>
-            </div>
           </div>
         </div>
       </nav>
@@ -270,37 +263,6 @@ export default function Navbar() {
                         suppressHydrationWarning={true}
                       >
                         <span className="font-medium">Contact Us</span>
-                      </button>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Language Button */}
-                  <motion.div
-                    className="px-6 max-[480px]:px-4 mt-8"
-                    initial={{ x: 30, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{
-                      delay: 0.3 + navLinks.length * 0.1,
-                      duration: 0.4,
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 25,
-                    }}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.02, x: 5 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="block w-full"
-                    >
-                      <button
-                        onClick={() => {
-                          // TODO: Add language switching functionality
-                          console.log("Language switch to Arabic");
-                        }}
-                        className="font-cairo w-full px-5 py-3 text-center rounded-2xl bg-blue-500/10 text-[#3E5EC0] font-bold text-base cursor-pointer transition-all duration-300 hover:shadow-lg"
-                        suppressHydrationWarning={true}
-                      >
-                        <span className="font-medium">الدورات العربية</span>
                       </button>
                     </motion.div>
                   </motion.div>

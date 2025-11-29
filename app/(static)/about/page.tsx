@@ -90,10 +90,7 @@ export default function AboutPage() {
 
       <Container>
         <div className="flex flex-col xl:flex-row gap-6 xl:gap-8 py-6 xl:py-8">
-          {/* Sections Navigation List */}
           <AboutNavigation />
-
-          {/* Main Content */}
           <div className="flex-1 min-w-0">
             <AboutSection />
             <VissionMission />

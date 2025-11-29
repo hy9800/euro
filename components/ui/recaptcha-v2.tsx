@@ -67,8 +67,8 @@ export default function ReCaptchaV2({
     <div className={`recaptcha-v2-container ${className}`}>
       <ReCAPTCHA
         ref={recaptchaRef}
-        // sitekey="6LezvtMrAAAAAD6czyI91m_cAMcGYZtQp4BN8hGW"
-        sitekey="6LeMxdMrAAAAALts50DURorRFtZwdISrVIbSg-8b"
+        sitekey="6LezvtMrAAAAAD6czyI91m_cAMcGYZtQp4BN8hGW"
+        // sitekey="6LeMxdMrAAAAALts50DURorRFtZwdISrVIbSg-8b"
         onChange={handleVerify}
         onExpired={handleExpire}
         onErrored={handleError}

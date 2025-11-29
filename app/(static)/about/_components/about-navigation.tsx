@@ -69,7 +69,7 @@ export default function AboutNavigation() {
               key={section.id}
               href={`#${section.id}`}
               onClick={(e) => handleClick(e, section.id)}
-              className={`flex items-center gap-2 text-sm font-semibold transition-all py-2.5 px-3 rounded-lg ${
+              className={`flex items-center gap-2  font-semibold transition-all py-2.5 px-3 rounded-lg ${
                 activeSection === section.id
                   ? "text-[#3E5EC0] bg-[#3E5EC0]/5"
                   : "text-gray-800 hover:text-[#3E5EC0] hover:bg-gray-50"
@@ -84,7 +84,7 @@ export default function AboutNavigation() {
               >
                 ➤
               </span>
-              <span>{section.label}</span>
+              <span className="text-sm">{section.label}</span>
             </a>
           ))}
         </nav>

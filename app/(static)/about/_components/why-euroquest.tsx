@@ -7,8 +7,8 @@ export default function WhyEuroquest() {
         <div className="w-full">
           <div className="flex flex-col lg:flex-row gap-6 items-center lg:items-start">
             {/* Left Side - Question Mark Icon */}
-            <div className="w-full lg:w-1/4 flex items-start justify-center lg:justify-start">
-              <div className="relative max-w-[100px] lg:max-w-[240px]">
+            <div className="w-full max-w-[200px] flex items-start justify-center lg:justify-start">
+              <div className="relative">
                 <img
                   src="/assets/icons/why-choose-icon.svg"
                   alt=""
@@ -19,10 +19,10 @@ export default function WhyEuroquest() {
 
             {/* Right Side - Content */}
             <div className="w-full lg:w-3/4 text-center lg:text-left">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              <h2 className="text-xl md:text-2xl font-bold mb-2">
                 Why Choose <span className="text-[#3E5EC0]">EuroQuest ?</span>
               </h2>
-              <p className="text-base leading-relaxed text-gray-700">
+              <p className="font-normal text-sm md:text-base leading-7">
                 Programs Covering{" "}
                 <span className="font-semibold">20+ Training Categories</span>{" "}
                 Methodologies Combining Theory And Application Tailored

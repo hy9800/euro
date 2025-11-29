@@ -12,13 +12,13 @@ export default function FutureOutlook() {
           <SectionTitle title="Future" highlight="Outlook" className="!mb-8" />
 
           {/* Future Outlook Content */}
-          <div className="border border-gray-200 rounded-2xl  md:p-5 p-2.5 flex flex-col lg:flex-row gap-6 lg:gap-8">
+          <div className="border border-gray-200 rounded-xl md:p-4 p-2 flex flex-col lg:flex-row gap-6">
             {/* Left Side - Image */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-[300px]">
               <img
                 src="/assets/images/vr-future.png"
                 alt="Future technology with VR"
-                className="w-full h-auto rounded-xl lg:rounded-2xl"
+                className="w-full h-auto rounded-xl"
               />
             </div>
 

@@ -4,10 +4,10 @@ export default function VissionMission() {
   return (
     <>
       {/* Our Vission */}
-      <section id="our-vision" className="bg-white md:py-11 py-8 scroll-mt-24">
+      <section id="our-vision" className="bg-white md:my-11 my-8 scroll-mt-24">
         <div className="flex flex-col gap-12 relative z-10">
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-            <div className="w-32 flex-shrink-0">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <div className="w-20 flex-shrink-0">
               <img
                 src="/assets/icons/vision-icon.svg"
                 alt=""
@@ -29,10 +29,10 @@ export default function VissionMission() {
       </section>
 
       {/* Our Mission */}
-      <section id="our-mission" className="bg-white md:py-11 py-8 scroll-mt-24">
+      <section id="our-mission" className="bg-white md:my-11 my-8 scroll-mt-24">
         <div className="flex flex-col gap-12 relative z-10">
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-            <div className="w-32 flex-shrink-0">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <div className="w-20 flex-shrink-0">
               <img
                 src="/assets/icons/mission-icon.svg"
                 alt=""

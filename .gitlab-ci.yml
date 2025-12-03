@@ -1,35 +1,106 @@
 stages:
+  - build
   - deploy
 
 variables:
   NODE_ENV: production
+  NPM_CONFIG_PRODUCTION: "false"
+  APP_PORT: "3000"
+  APP_HOST: "0.0.0.0"
+  PM2_APP_NAME: "EuroQuest-Next"
+  NEXT_TELEMETRY_DISABLE: "1"
+  NODE_OPTIONS: "--max-old-space-size=1024"
 
-before_script:
-  - which ssh-agent || (apt-get update -y && apt-get install openssh-client -y git -y)
-  - eval $(ssh-agent -s)
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  - echo "Testing VPS_HOST $VPS_HOST on port 22"
-  # - nc -zv $VPS_HOST 7822 || (echo "❌ SSH port 7822 unreachable" && exit 1)
-  - ssh-keyscan -p 22 -v $VPS_HOST >> ~/.ssh/known_hosts
-  - chmod 644 ~/.ssh/known_hosts
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .next/cache
+    - .npm
+
+build:
+  stage: build
+  image: node:20-bullseye
+  script:
+    - npm ci --include=dev
+    - npm run build
+    - mkdir -p out_artifact
+    - cp -r .next out_artifact/.next
+    - '[ -d public ] && cp -r public out_artifact/public || true'
+    - cp package.json out_artifact/package.json
+    - '[ -f package-lock.json ] && cp package-lock.json out_artifact/package-lock.json || true'
+    - cp -r node_modules out_artifact/node_modules
+    - tar -czf app.tgz -C out_artifact .
+  artifacts:
+    when: on_success
+    expire_in: 7 days
+    paths:
+      - app.tgz
+
+.setup_ssh: &setup_ssh
+  image: debian:bookworm-slim
+  before_script:
+    - DEBIAN_FRONTEND=noninteractive apt-get update -y -qq
+    - apt-get install -y --no-install-recommends openssh-client rsync git
+    - eval "$(ssh-agent -s)"
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - |
+      cat <<EOF > ~/.ssh/config
+      Host *
+        Port 22
+        StrictHostKeyChecking no
+      EOF
+    - chmod 600 ~/.ssh/config
 
 deploy:
   stage: deploy
+  needs: ["build"]
+  <<: *setup_ssh
   script:
-    - ssh -p 22 $VPS_USER@$VPS_HOST "
-        cd $VPS_PATH || mkdir -p $VPS_PATH;
-        git fetch --all;
-        git reset --hard origin/master;
-        git clean -fd;
-      "
-    - ssh -p 22 $VPS_USER@$VPS_HOST "
-        cd $VPS_PATH;
-        npm install --include=dev;
-        npm run build;
-      "
-    - ssh -p 22 $VPS_USER@$VPS_HOST "
-        cd $VPS_PATH;
-        pm2 restart EuroQuest-Next || pm2 start npm --name EuroQuest-Next -- run start;
+    - scp app.tgz "$VPS_USER@$VPS_HOST:/tmp/app.tgz"
+    - |
+      ssh "$VPS_USER@$VPS_HOST" bash -lc "
+        set -euo pipefail
+
+        mkdir -p \"$VPS_PATH\"
+        cd \"$VPS_PATH\"
+
+        ts=\$(date +%Y%m%d%H%M%S)
+        release_dir=\"releases/\$ts\"
+        mkdir -p \"\$release_dir\"
+
+        tar -xzf /tmp/app.tgz -C \"\$release_dir\"
+        mv /tmp/app.tgz \"/tmp/app.tgz.\$ts\"
+
+        # تحديث .next و public و node_modules في مجلد المشروع الرئيسي (shared)
+        rsync -a \"\$release_dir/.next/\" .next/
+
+        if [ -d \"\$release_dir/public\" ]; then
+          rsync -a \"\$release_dir/public/\" public/
+        fi
+
+        if [ -d \"\$release_dir/node_modules\" ]; then
+          rsync -a \"\$release_dir/node_modules/\" node_modules/
+        fi
+
+        if [ -f \"\$release_dir/package.json\" ]; then
+          cp \"\$release_dir/package.json\" package.json
+        fi
+
+        if [ -f \"\$release_dir/package-lock.json\" ]; then
+          cp \"\$release_dir/package-lock.json\" package-lock.json
+        fi
+
+        export NODE_ENV=production
+        export PORT=\"$APP_PORT\"
+        export HOST=\"${APP_HOST:-0.0.0.0}\"
+
+        pm2 delete \"$PM2_APP_NAME\" || true
+        pm2 start npm --name \"$PM2_APP_NAME\" -- start
+
+        pm2 save
+
+        ln -sfn \"\$release_dir\" current
+
+        echo \"Deployed release at: \$release_dir\"
       "

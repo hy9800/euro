@@ -10,7 +10,7 @@ before_script:
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
-  - echo "Testing VPS_HOST $VPS_HOST on port 7822"
+  - echo "Testing VPS_HOST $VPS_HOST on port 22"
   # - nc -zv $VPS_HOST 7822 || (echo "❌ SSH port 7822 unreachable" && exit 1)
   - ssh-keyscan -p 7822 -v $VPS_HOST >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts

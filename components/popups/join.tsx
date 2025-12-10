@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, Mail, Phone, MapPin, Upload, ChevronRight } from "lucide-react";
+import { XIcon, MailIcon, PhoneIcon, MapPinIcon, UploadIcon, ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PhoneInput from "@/components/ui/phone-input";
 import { useJoinForm } from "@/services/forms/forms-hooks";
@@ -229,7 +229,7 @@ export default function JoinPopup() {
           onClick={closeJoin}
           className="absolute top-1 right-2.5 bg-none border-none text-sm text-[#6F6F6F] cursor-pointer z-10 p-2.5 rounded-full transition-all duration-300 hover:bg-gray-100"
         >
-          <X className="w-4 h-4" />
+          <XIcon className="w-4 h-4" />
         </button>
 
         <div className="flex flex-col lg:flex-row h-full max-h-full">
@@ -252,7 +252,7 @@ export default function JoinPopup() {
 
             <ul className="flex flex-col gap-4 text-sm">
               <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
+                <MailIcon className="w-4 h-4" />
                 <a
                   href="mailto:info@euroqst.com"
                   className="text-white no-underline hover:text-blue-200 transition-colors"
@@ -261,7 +261,7 @@ export default function JoinPopup() {
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
+                <PhoneIcon className="w-4 h-4" />
                 <a
                   href="tel:+421915319691"
                   className="text-white no-underline hover:text-blue-200 transition-colors"
@@ -270,7 +270,7 @@ export default function JoinPopup() {
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4" />
+                <MapPinIcon className="w-4 h-4" />
                 <span className="text-white">
                   Šancová 61, Bratislava - Slovakia
                 </span>
@@ -453,7 +453,7 @@ export default function JoinPopup() {
                           errors.cv && "border-red-500"
                         )}
                       >
-                        <Upload className="w-4 h-4 text-[#333]" />
+                        <UploadIcon className="w-4 h-4 text-[#333]" />
                         <span>{fileName}</span>
                       </button>
                       {errors.cv && (
@@ -502,7 +502,7 @@ export default function JoinPopup() {
                       <span className="btn-text">
                         {joinMutation.isPending ? "Submitting..." : "Submit Application"}
                       </span>
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRightIcon className="w-4 h-4" />
                     </button>
 
                     {/* reCAPTCHA v2 */}

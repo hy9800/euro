@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getCourseDetails } from "@/services/services";
 import { BreadcrumbItem } from "@/components/ui/breadcrumb";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import HeroBanner from "@/components/shared/hero-banner";
 import Container from "@/components/shared/container";
 import CourseContent from "../_components/course-content";
@@ -124,7 +124,7 @@ export default async function Page({
     {
       href: "/",
       label: "",
-      icon: <Home size={14} />,
+      icon: <HomeIcon size={14} />,
     },
     {
       href: "/training-courses",

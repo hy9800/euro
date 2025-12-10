@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Schema from "@/components/shared/schema";
 import HeroBanner from "@/components/shared/hero-banner";
 import { BreadcrumbItem } from "@/components/ui/breadcrumb";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import Container from "@/components/shared/container";
 import AdditionalDescription from "@/components/shared/additional-description";
 import CategorySection from "../_components/category-section";
@@ -126,7 +126,7 @@ export default async function Page({
     {
       href: "/",
       label: "",
-      icon: <Home size={14} />,
+      icon: <HomeIcon size={14} />,
     },
     {
       href: "/training-courses",

@@ -1,6 +1,6 @@
 import HeroBanner from "@/components/shared/hero-banner";
 import { getSitemapData } from "@/services/services";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import { Metadata } from "next";
 import Schema from "@/components/shared/schema";
 
@@ -25,7 +25,7 @@ export default async function SitemapPage() {
     {
       href: "/",
       label: "",
-      icon: <Home width={16} height={16} />,
+      icon: <HomeIcon width={16} height={16} />,
     },
     {
       href: "/sitemap",

@@ -58,12 +58,12 @@ const nextConfig: NextConfig = {
   // },
   
   // Modularize imports to reduce bundle size
-  modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-      skipDefaultConversion: true,
-    },
-  },
+  // modularizeImports: {
+  //   'lucide-react': {
+  //     transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+  //     skipDefaultConversion: true,
+  //   },
+  // },
   
   // Production optimizations
   ...(process.env.NODE_ENV === 'production' && {

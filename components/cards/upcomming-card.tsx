@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, MapPin, Calendar } from "lucide-react";
+import { ArrowRight, MapPinIcon, Calendar } from "lucide-react";
 
 interface UpcomingCourseCardProps {
   course: UpcomingCourse;
@@ -46,7 +46,7 @@ export default function UpcommingCourseCard({
             {/* Location */}
             <div className="flex items-center gap-1">
               <div className="w-5 h-5 flex items-center justify-center">
-                <MapPin size={16} className="text-[#3E5EC0]" />
+                <MapPinIcon size={16} className="text-[#3E5EC0]" />
               </div>
               <span className="text-[#3E5EC0] text-sm font-medium">
                 {course.city_title}

@@ -1,7 +1,7 @@
 "use client";
 import {
-  ChevronLeft,
-  ChevronRight,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import UpcommingCourseCard from "../../../components/cards/upcomming-card";
@@ -82,14 +82,14 @@ export default function UpcomingCoursesSlider({ upcomingCourses }: UpcomingCours
             type="button"
             aria-label="Previous courses"
           >
-            <ChevronLeft size={19} />
+            <ChevronLeftIcon size={19} />
           </button>
           <button
             className="nav-btn next-btn w-9 h-9 cursor-pointer bg-white border border-[#3E5EC0] rounded-full flex items-center justify-center text-[#3E5EC0] hover:bg-[#3E5EC0] hover:text-white active:scale-95 active:bg-[#2E4EA0] active:border-[#2E4EA0] transition-all duration-300"
             type="button"
             aria-label="Next courses"
           >
-            <ChevronRight size={19} />
+            <ChevronRightIcon size={19} />
           </button>
         </div>
       )}

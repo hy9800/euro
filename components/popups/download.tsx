@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, ChevronRight } from "lucide-react";
+import { XIcon, ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PhoneInput from "@/components/ui/phone-input";
 import { useDownloadForm } from "@/services/forms/forms-hooks";
@@ -307,7 +307,7 @@ export default function DownloadPopup() {
             onClick={closeDownload}
             className="absolute top-1 right-2.5 bg-none border-none text-sm text-[#6F6F6F] cursor-pointer z-10 p-2.5 rounded-full transition-all duration-300 hover:bg-gray-100"
           >
-            <X className="w-4 h-4" />
+            <XIcon className="w-4 h-4" />
           </button>
 
           <div className="flex flex-col h-full max-h-full">
@@ -467,7 +467,7 @@ export default function DownloadPopup() {
                         : "Download Brochure"}
                     </span>
                     {!downloadMutation.isPending && !isGeneratingPDF && (
-                      <ChevronRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-0.5" />
+                      <ChevronRightIcon className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-0.5" />
                     )}
                   </button>
 

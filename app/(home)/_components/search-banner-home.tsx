@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Search, RotateCcw } from "lucide-react";
+import { SearchIcon, RotateCcwIcon } from "lucide-react";
 import { orderedMonths, durationOptions } from "@/constants";
 import { useCategories, useCities } from "@/services/hooks";
 import Input from "../../../components/ui/input";
@@ -81,7 +81,7 @@ export default function SearchBannerHome() {
       return;
     }
 
-    // Build search query with proper parameter mapping
+    // Build search query with proper parameter MapPinIcong
     const searchParams = new URLSearchParams();
 
     // Map form data to API parameters
@@ -238,7 +238,7 @@ export default function SearchBannerHome() {
                 onClick={handleReset}
                 variant="secondary"
                 size="lg"
-                icon={<RotateCcw size={16} />}
+                icon={<RotateCcwIcon size={16} />}
                 iconPosition="right"
                 className="h-[45px] px-5 text-sm font-semibold min-w-fit bg-white cursor-pointer border border-[#3E5EC0] text-[#3E5EC0]"
                 title="Reset"
@@ -252,7 +252,7 @@ export default function SearchBannerHome() {
                 type="submit"
                 variant="primary"
                 size="lg"
-                icon={<Search size={16} />}
+                icon={<SearchIcon size={16} />}
                 iconPosition="right"
                 className="h-[45px] px-5 text-sm font-semibold bg-[#3E5EC0] hover:bg-[#314ea9] text-white rounded-[60px] min-w-fit flex items-center justify-center gap-2 border-none transition-all duration-200"
                 title="Search"

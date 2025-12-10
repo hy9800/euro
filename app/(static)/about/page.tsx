@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import HeroBanner from "@/components/shared/hero-banner";
 import SectionTitle from "@/components/shared/section-title";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import { getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
 import Schema from "@/components/shared/schema";
@@ -17,7 +17,7 @@ import OurValues from "./_components/our-values";
 import CoverageSection from "./_components/coverage-section";
 
 const breadcrumbs = [
-  { label: "", href: "/", icon: <Home width={16} height={16} /> },
+  { label: "", href: "/", icon: <HomeIcon width={16} height={16} /> },
   { label: "About", href: "/about" },
 ];
 

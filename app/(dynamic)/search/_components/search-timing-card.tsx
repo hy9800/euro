@@ -1,4 +1,4 @@
-import { Calendar, Euro, MapPin } from "lucide-react";
+import { Calendar, Euro, MapPinIcon } from "lucide-react";
 import Link from "next/link";
 import { usePopupStore } from "@/store/popup-store";
 
@@ -35,7 +35,7 @@ export default function SearchTimingCard({
         {/* Location and Price */}
         <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
           <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-[#3E5EC0]" />
+            <MapPinIcon size={16} className="text-[#3E5EC0]" />
             <h4 className="text-sm font-semibold text-[#253a7b] m-0">
               {timing.city_title}
             </h4>

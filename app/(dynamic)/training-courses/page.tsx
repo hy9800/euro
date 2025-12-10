@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import HeroBanner from "@/components/shared/hero-banner";
 import { BreadcrumbItem } from "@/components/ui/breadcrumb";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import CategoriesSection from "./_components/categories-section";
 import { getCategories, getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
@@ -106,7 +106,7 @@ export default async function CategoriesPage({ searchParams }: CategoriesPagePro
     {
       href: "/",
       label: "",
-      icon: <Home size={14} />,
+      icon: <HomeIcon size={14} />,
     },
     {
       href: "/training-courses",

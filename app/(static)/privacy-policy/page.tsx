@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import HeroBanner from "@/components/shared/hero-banner";
 import { BreadcrumbItem } from "@/components/ui/breadcrumb";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import { getSeoData } from "@/services/services";
 import Container from "@/components/shared/container";
 import Schema from "@/components/shared/schema";
@@ -57,7 +57,7 @@ export default function PrivacyPolicyPage() {
     {
       href: "/",
       label: "",
-      icon: <Home width={16} height={16}/>
+      icon: <HomeIcon width={16} height={16}/>
     },
     {
       href: "/privacy-policy",

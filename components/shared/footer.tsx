@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { popularCategories, quickAccessLinks, socialLinks } from "@/constants";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -23,7 +23,7 @@ export default function Footer() {
               </Link>
               <ul className="flex flex-col gap-4">
                 <li className="list-none flex items-start gap-2">
-                  <MapPin className="w-5 h-5"/>
+                  <MapPinIcon className="w-5 h-5"/>
                   <span className="text-base">
                     Šancová 3568/61 <br />
                     Mestská časť Nové Mesto
@@ -34,11 +34,11 @@ export default function Footer() {
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Mail className="w-5 h-5"/>
+                  <MailIcon className="w-5 h-5"/>
                   <span className="text-base">info@euroqst.com</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Phone className="w-5 h-5" />
+                  <PhoneIcon className="w-5 h-5" />
                   <span className="text-base">+421 911 803 183</span>
                 </li>
               </ul>

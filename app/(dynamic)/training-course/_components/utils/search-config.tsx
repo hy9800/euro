@@ -1,7 +1,7 @@
 import { FieldConfig } from "@/components/shared/search-banner";
 import { getUniqueMonths, getUniqueCities } from "./data-transformers";
 import { CourseDetailResponse } from "@/services/services";
-import { RotateCcw } from "lucide-react";
+import { RotateCcwIcon } from "lucide-react";
 
 export type SearchPageType = "course" | "city-course";
 
@@ -83,7 +83,7 @@ export const createCustomActions = (
       {
         type: "reset" as const,
         label: "Clear",
-        icon: <RotateCcw size={16} />,
+        icon: <RotateCcwIcon size={16} />,
         variant: "secondary" as const,
         className:
           "bg-white border border-[#3E5EC0] text-[#3E5EC0] cursor-pointer",

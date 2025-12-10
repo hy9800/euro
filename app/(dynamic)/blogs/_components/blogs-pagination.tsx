@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 interface BlogsPaginationProps {
   currentPage: number;
@@ -61,7 +61,7 @@ export default function BlogsPagination({
         aria-label="Go to previous page"
         aria-disabled={!hasPrevPage || isPending}
       >
-        <ChevronLeft size={16} aria-hidden="true" />
+        <ChevronLeftIcon size={16} aria-hidden="true" />
         <span className="sr-only">Previous page</span>
       </button>
 
@@ -118,7 +118,7 @@ export default function BlogsPagination({
         aria-label="Go to next page"
         aria-disabled={!hasNextPage || isPending}
       >
-        <ChevronRight size={16} aria-hidden="true" />
+        <ChevronRightIcon size={16} aria-hidden="true" />
         <span className="sr-only">Next page</span>
       </button>
     </nav>

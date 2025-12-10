@@ -4,7 +4,7 @@ import HeroBanner from "@/components/shared/hero-banner";
 import Container from "@/components/shared/container";
 import AdditionalDescription from "@/components/shared/additional-description";
 import { BreadcrumbItem } from "@/components/ui/breadcrumb";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import CourseTimings from "../../_components/course-timings";
 import CourseContent from "../../_components/course-content";
 import Schema from "@/components/shared/schema";
@@ -123,7 +123,7 @@ export default async function Page({ params }: PageProps) {
   const baseUrl = "https://euroqst.com";
 
   const breadcrumbs: BreadcrumbItem[] = [
-    { href: "/", label: "", icon: <Home size={14} /> },
+    { href: "/", label: "", icon: <HomeIcon size={14} /> },
     { href: "/training-cities", label: "cities" },
     { href: `/training-cities/${city.slug}`, label: city.title },
     {

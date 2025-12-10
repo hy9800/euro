@@ -1,5 +1,5 @@
 import Container from "@/components/shared/container";
-import { ChevronRight } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 
 interface AboutSectionProps {
@@ -70,7 +70,7 @@ export default function AboutSection({ className = "" }: AboutSectionProps) {
               suppressHydrationWarning={true}
             >
               <span>Show More</span>
-              <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ChevronRightIcon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

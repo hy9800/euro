@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 
 /**
  * Converts search filters to banner values for the search form
@@ -44,7 +44,7 @@ export function formatDate(dateString: string): string {
 
 export function generateSearchBreadcrumbs() {
   return [
-    { label: "", href: "/", icon: <Home size={16} />, },
+    { label: "", href: "/", icon: <HomeIcon size={16} />, },
     { label: "Search Results", href: "#" },
   ];
 }

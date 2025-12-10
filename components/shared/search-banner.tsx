@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { orderedMonths, durationOptions } from "@/constants";
 import { useCategories, useCities } from "@/services/hooks";
-import { RotateCcw, Search } from "lucide-react";
+import { RotateCcwIcon, SearchIcon } from "lucide-react";
 import Button from "../ui/button";
 import Input from "../ui/input";
 import CustomSelect, {
@@ -123,7 +123,7 @@ const defaultActions: ActionButton[] = [
   {
     type: "reset",
     label: "Clear",
-    icon: <RotateCcw size={14} />,
+    icon: <RotateCcwIcon size={14} />,
     variant: "outline",
   },
   // {

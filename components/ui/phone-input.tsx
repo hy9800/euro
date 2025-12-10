@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect, useMemo } from 'react'
-import { ChevronDown, Search } from 'lucide-react'
+import { ChevronDownIcon, SearchIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { 
   parsePhoneNumber, 
@@ -19,7 +19,7 @@ interface Country {
   dialCode: string
 }
 
-// Country names mapping for better display
+// Country names MapPinIcong for better display
 const countryNames: Record<string, string> = {
   'AE': 'United Arab Emirates',
   'SA': 'Saudi Arabia',
@@ -388,7 +388,7 @@ export default function PhoneInput({
                 className="country-flag w-[18px] h-3 rounded-sm object-cover"
               />
               <span className="country-code-text font-medium">{selectedCountry.dialCode}</span>
-              <ChevronDown className={cn(
+              <ChevronDownIcon className={cn(
                 "dropdown-arrow ml-auto text-[#6B7280] transition-transform duration-300 w-3 h-3",
                 isDropdownOpen && "rotate-180"
               )} />
@@ -400,7 +400,7 @@ export default function PhoneInput({
                 {/* Search Input */}
                 <div className="search-container border-b border-[#E5E7EB] p-3">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#6B7280]" />
+                    <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#6B7280]" />
                     <input
                       ref={searchInputRef}
                       type="text"

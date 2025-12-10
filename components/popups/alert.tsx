@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { CheckCircle, XCircle, AlertCircle, Info, X } from "lucide-react";
+import { 
+  CheckCircleIcon,
+  XCircleIcon,
+  AlertCircleIcon,
+  InfoIcon,
+  XIcon
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePopupStore } from "@/store/popup-store";
 
@@ -15,10 +21,10 @@ export interface AlertData {
 }
 
 const alertIcons = {
-  success: CheckCircle,
-  error: XCircle,
-  warning: AlertCircle,
-  info: Info,
+  success: CheckCircleIcon,
+  error: XCircleIcon,
+  warning: AlertCircleIcon,
+  info: InfoIcon,
 };
 
 const alertStyles = {
@@ -83,7 +89,7 @@ export default function AlertPopup() {
                 )}
                 aria-label="إغلاق"
               >
-                <X className="w-5 h-5" />
+                <XIcon className="w-5 h-5" />
               </button>
             )}
           </div>

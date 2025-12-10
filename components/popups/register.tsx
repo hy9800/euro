@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { X, ChevronRight } from 'lucide-react'
+import { XIcon, ChevronRightIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import PhoneInput from '@/components/ui/phone-input'
 import { useRegisterForm } from '@/services/forms/forms-hooks'
@@ -232,7 +232,7 @@ export default function RegisterPopup() {
           onClick={closeRegister}
           className="absolute top-1 right-2.5 bg-none border-none text-sm text-[#6F6F6F] cursor-pointer z-10 p-2.5 rounded-full transition-all duration-300 hover:bg-gray-100"
         >
-          <X className="w-4 h-4" />
+          <XIcon className="w-4 h-4" />
         </button>
 
         <div className="register-modal flex flex-col h-full max-h-full">
@@ -482,7 +482,7 @@ export default function RegisterPopup() {
                   className="submit-btn min-w-[170px] w-fit h-12 rounded-[10px] px-[18px] text-sm font-semibold text-white bg-gradient-to-r from-[#314EA9] to-[#446AE1] border-none cursor-pointer flex items-center justify-center gap-2 ml-0 transition-all duration-500 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed max-md:w-full max-md:min-w-auto max-md:h-11 max-md:text-[13px]"
                 >
                   <span className="btn-text">{registerMutation.isPending ? 'Registering...' : 'Register'}</span>
-                  {!registerMutation.isPending && <ChevronRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-0.5" />}
+                  {!registerMutation.isPending && <ChevronRightIcon className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-0.5" />}
                 </button>
 
                 {/* reCAPTCHA v2 */}

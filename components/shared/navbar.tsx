@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { MenuIcon, XIcon } from "lucide-react";
 import { usePopupStore } from "@/store/popup-store";
 
 export default function Navbar() {
@@ -117,7 +117,7 @@ export default function Navbar() {
                 className="w-11 h-11 rounded-xl border-2 border-[#DDE9FF] flex items-center justify-center cursor-pointer bg-gradient-to-br from-[#f8faff] to-[#f0f4ff] outline-none transition-all duration-300 ease-out shadow-[0_2px_8px_rgba(49,78,169,0.1)] hover:shadow-lg"
                 onClick={openSidebar}
               >
-                <Menu className="w-5 h-5 font-semibold text-blue-600" />
+                <MenuIcon className="w-5 h-5 font-semibold text-blue-600" />
               </button>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function Navbar() {
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <X className="w-6 h-6" />
+                    <XIcon className="w-6 h-6" />
                   </motion.button>
                 </div>
               </motion.div>

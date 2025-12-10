@@ -1,6 +1,6 @@
 import { getBlogBySlug } from "@/services/services";
 import HeroBanner from "@/components/shared/hero-banner";
-import { Home } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Container from "@/components/shared/container";
@@ -109,7 +109,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     {
       href: "/",
       label: "Home",
-      icon: <Home size={14} />,
+      icon: <HomeIcon size={14} />,
     },
     {
       href: "/blogs",

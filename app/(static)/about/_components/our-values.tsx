@@ -13,14 +13,14 @@ export default function OurValues() {
           </p>
 
           {/* Values Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {/* Quality */}
-            <div className="col-span-1 md:col-span-2 border border-[#C5C5C5] rounded-xl md:p-5 p-4">
+            <div className="col-span-1 md:col-span-2 border border-[#C5C5C5] rounded-xl p-4">
               <div className="flex items-center gap-2 md:gap-3 mb-4">
-                <div className="md:w-10 md:h-10 w-8 h-8 flex items-center justify-center">
+                <div className="w-8 h-8 flex items-center justify-center">
                   <img src="/assets/icons/value-icon1.svg" alt="" />
                 </div>
-                <h3 className="md:text-xl text-lg font-bold text-[#3E5EC0]">Quality</h3>
+                <h3 className="text-lg font-bold text-[#3E5EC0]">Quality</h3>
               </div>
               <div className="border-t border-[#C5C5C5] pt-4">
                 <p className="text-gray-600 text-sm md:text-base font-medium">
@@ -30,12 +30,12 @@ export default function OurValues() {
             </div>
 
             {/* Professionalism */}
-            <div className="col-span-1 border border-[#C5C5C5] rounded-xl md:p-5 p-4">
+            <div className="col-span-1 border border-[#C5C5C5] rounded-xl p-4">
               <div className="flex items-center gap-2 md:gap-3 mb-4">
-                <div className="md:w-10 md:h-10 w-8 h-8 flex items-center justify-center">
+                <div className="w-8 h-8 flex items-center justify-center">
                   <img src="/assets/icons/value-icon2.svg" alt="" />
                 </div>
-                <h3 className="md:text-xl text-lg font-bold text-[#3E5EC0]">
+                <h3 className="text-lg font-bold text-[#3E5EC0]">
                   Professionalism
                 </h3>
               </div>
@@ -48,12 +48,12 @@ export default function OurValues() {
             </div>
 
             {/* Transparency */}
-            <div className="col-span-1 border border-[#C5C5C5] rounded-xl md:p-5 p-4">
+            <div className="col-span-1 border border-[#C5C5C5] rounded-xl p-4">
               <div className="flex items-center gap-2 md:gap-3 mb-4">
-                <div className="md:w-10 md:h-10 w-8 h-8 flex items-center justify-center">
+                <div className="w-8 h-8 flex items-center justify-center">
                   <img src="/assets/icons/value-icon3.svg" alt="" />
                 </div>
-                <h3 className="md:text-xl text-lg font-bold text-[#3E5EC0]">
+                <h3 className="text-lg font-bold text-[#3E5EC0]">
                   Transparency
                 </h3>
               </div>
@@ -66,12 +66,12 @@ export default function OurValues() {
             </div>
 
             {/* Continuous Innovation */}
-            <div className="col-span-1 md:col-span-2 border border-[#C5C5C5] rounded-xl md:p-5 p-4">
+            <div className="col-span-1 md:col-span-2 border border-[#C5C5C5] rounded-xl p-4">
               <div className="flex items-center gap-2 md:gap-3 mb-4">
-                <div className="md:w-10 md:h-10 w-8 h-8 flex items-center justify-center">
+                <div className="w-8 h-8 flex items-center justify-center">
                   <img src="/assets/icons/value-icon4.svg" alt="" />
                 </div>
-                <h3 className="md:text-xl text-lg font-bold text-[#3E5EC0]">
+                <h3 className="text-lg font-bold text-[#3E5EC0]">
                   Continuous Innovation
                 </h3>
               </div>
@@ -84,12 +84,12 @@ export default function OurValues() {
             </div>
 
             {/* Results-Oriented Approach */}
-            <div className="col-span-1 md:col-span-2 border border-[#C5C5C5] rounded-xl md:p-5 p-4">
+            <div className="col-span-1 md:col-span-2 border border-[#C5C5C5] rounded-xl p-4">
               <div className="flex items-center gap-2 md:gap-3 mb-4">
-                <div className="md:w-10 md:h-10 w-8 h-8 flex items-center justify-center">
+                <div className="w-8 h-8 flex items-center justify-center">
                   <img src="/assets/icons/value-icon5.svg" alt="" />
                 </div>
-                <h3 className="md:text-xl text-lg font-bold text-[#3E5EC0]">
+                <h3 className="text-lg font-bold text-[#3E5EC0]">
                   Results-Oriented Approach
                 </h3>
               </div>
@@ -102,12 +102,12 @@ export default function OurValues() {
             </div>
 
             {/* Integrity */}
-            <div className="col-span-1 border border-[#C5C5C5] rounded-xl md:p-5 p-4">
+            <div className="col-span-1 border border-[#C5C5C5] rounded-xl p-4">
               <div className="flex items-center gap-2 md:gap-3 mb-4">
-                <div className="md:w-10 md:h-10 w-8 h-8 flex items-center justify-center">
+                <div className="w-8 h-8 flex items-center justify-center">
                   <img src="/assets/icons/value-icon6.svg" alt="" />
                 </div>
-                <h3 className="md:text-xl text-lg font-bold text-[#3E5EC0]">Integrity</h3>
+                <h3 className="text-lg font-bold text-[#3E5EC0]">Integrity</h3>
               </div>
               <div className="border-t border-[#C5C5C5] pt-4">
                 <p className="text-gray-600 text-sm md:text-base font-medium">

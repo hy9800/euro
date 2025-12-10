@@ -44,17 +44,17 @@ export async function generateMetadata({
     creator: "EuroQuest International",
     publisher: "EuroQuest International",
     category: "Professional Training & Development",
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
+    // robots: {
+    //   index: true,
+    //   follow: true,
+    //   googleBot: {
+    //     index: true,
+    //     follow: true,
+    //     "max-video-preview": -1,
+    //     "max-image-preview": "large",
+    //     "max-snippet": -1,
+    //   },
+    // },
     openGraph: {
       type: "article",
       locale: "en_US",

@@ -608,7 +608,7 @@ textarea {
 .overview-text p strong:only-child {
   display: block;
   margin: 32px 0 0 0;
-  font-size: 18px;
+  font-size: 20px;
   color: #3E5EC0;
   padding-bottom: 0;
   border-bottom: none;
@@ -617,7 +617,7 @@ textarea {
 }
 
 .overview-text .unit-heading {
-  font-size: 18px !important;
+  font-size: 15px !important;
   margin-block: 14px !important;
   background: #F2F8FF !important;
   color: #2d3748 !important;

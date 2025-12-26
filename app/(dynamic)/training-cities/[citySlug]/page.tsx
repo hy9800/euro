@@ -120,7 +120,7 @@ export default async function Page({
     },
     {
       href: "/training-cities",
-      label: "Cities",
+      label: "Training Cities",
     },
     {
       href: `/training-cities/${city?.slug}`,

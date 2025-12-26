@@ -38,10 +38,10 @@ export default function Breadcrumb({
             aria-current={index === items.length - 1 ? "page" : undefined}
           >
             {item.icon && <span className="mr-1">{item.icon}</span>}
-            <span className="lowercase text-sm whitespace-nowrap">{item.label}</span>
+            <span className="text-sm whitespace-nowrap">{item.label}</span>
           </a>
           {index < items.length - 1 && (
-            <span className={`${separatorColor} lowercase`} aria-hidden="true">
+            <span className={`${separatorColor}`} aria-hidden="true">
               /
             </span>
           )}

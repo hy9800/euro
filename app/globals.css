@@ -655,11 +655,6 @@ textarea {
   margin-bottom: 5px;
 }
 
-.overview-text .unit-heading:hover {
-  background: #f0f4ff !important;
-  transform: translateX(4px) !important;
-}
-
 .overview-text p strong:only-child+* {
   margin-top: 16px;
 }

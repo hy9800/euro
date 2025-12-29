@@ -3,10 +3,10 @@ import React from "react";
 
 export default function OurClients() {
   return (
-    <section id="our-clients" className="bg-white md:py-10 py-6 scroll-mt-24">
+    <section id="our-clients" className="scroll-mt-24 md:my-14 my-10">
       <div className="flex flex-col gap-12 relative z-10">
         <div className="w-full">
-          <SectionTitle title="Our Clients" highlight="" className="!mb-6" />
+          <SectionTitle title="Our Clients" highlight="" className="!mb-4" />
 
           {/* Clients Content */}
           <div className="border border-gray-200 rounded-xl md:p-4 p-2 flex flex-col lg:flex-row gap-6">
@@ -27,7 +27,7 @@ export default function OurClients() {
                   <img src="/assets/icons/client-icon1.svg" alt="" />
                 </div>
                 <span className="text-base font-semibold text-black">
-                  Government Ministries
+                  government ministries
                 </span>
               </div>
 
@@ -37,7 +37,7 @@ export default function OurClients() {
                   <img src="/assets/icons/client-icon2.svg" alt="" />
                 </div>
                 <span className="text-base font-semibold text-black">
-                  Oil & Energy Organizations
+                  oil & energy organizations
                 </span>
               </div>
 
@@ -47,7 +47,7 @@ export default function OurClients() {
                   <img src="/assets/icons/client-icon3.svg" alt="" />
                 </div>
                 <span className="text-base font-semibold text-black">
-                  Financial Institutions
+                  financial institutions
                 </span>
               </div>
 
@@ -57,7 +57,7 @@ export default function OurClients() {
                   <img src="/assets/icons/client-icon4.svg" alt="" />
                 </div>
                 <span className="text-base font-semibold text-black">
-                  Telecom Companies
+                  telecom companies
                 </span>
               </div>
 
@@ -67,7 +67,7 @@ export default function OurClients() {
                   <img src="/assets/icons/client-icon5.svg" alt="" />
                 </div>
                 <span className="text-base font-semibold text-black">
-                  Educational Bodies
+                  educational bodies
                 </span>
               </div>
 
@@ -77,7 +77,7 @@ export default function OurClients() {
                   <img src="/assets/icons/client-icon6.svg" alt="" />
                 </div>
                 <span className="text-base font-semibold text-black">
-                  Leading Multinational Corporations
+                  and leading multinational corporations
                 </span>
               </div>
             </div>

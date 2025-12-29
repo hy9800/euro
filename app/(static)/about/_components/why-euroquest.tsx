@@ -1,13 +1,52 @@
-import Container from "@/components/shared/container";
-import React from "react";
-
 export default function WhyEuroquest() {
   return (
-    <section id="why-euroquest" className="bg-white md:py-10 py-6 scroll-mt-24">
+    <section id="why-euroquest" className="md:my-14 my-10 scroll-mt-24">
       <div className="flex flex-col gap-12 relative z-10">
         <div className="w-full">
-          <div className="flex flex-col lg:flex-row md:gap-6 gap-4 items-center lg:items-start">
+          <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
             {/* Left Side - Question Mark Icon */}
+            <div className="w-full lg:w-3/4 flex flex-col gap-4">
+              <h2 className="text-xl md:text-2xl font-bold mb-2">
+                Why EuroQuest International?
+              </h2>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3 md:gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full md:mt-[9px]"></div>
+                  <p className="text-base text-gray-700 leading-relaxed">
+                    Programs covering 20+ training categories
+                  </p>
+                </li>
+
+                <li className="flex items-start gap-3 md:gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full md:mt-[9px]"></div>
+                  <p className="text-base text-gray-700 leading-relaxed">
+                    Practical methodologies combining theory and application
+                  </p>
+                </li>
+                <li className="flex items-start gap-3 md:gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full md:mt-[9px]"></div>
+                  <p className="text-base text-gray-700 leading-relaxed">
+                    Tailored solutions for organizations and individuals
+                  </p>
+                </li>
+                <li className="flex items-start gap-3 md:gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full md:mt-[9px]"></div>
+                  <p className="text-base text-gray-700 leading-relaxed">
+                    Global presence in cities such as Dubai, London, Barcelona,
+                    Istanbul, Vienna, Paris, Geneva, and more
+                  </p>
+                </li>
+                <li className="flex items-start gap-3 md:gap-4">
+                  <div className="flex-shrink-0 w-2 h-2 bg-black rounded-full md:mt-[9px]"></div>
+                  <p className="text-base text-gray-700 leading-relaxed">
+                    Strong focus on emerging topics such as Artificial
+                    Intelligence, Sustainability, and Digital Transformation
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            {/* Right Side - Content */}
             <div className="w-full max-w-[200px] flex items-start justify-center lg:justify-start">
               <div className="relative">
                 <img
@@ -17,68 +56,7 @@ export default function WhyEuroquest() {
                 />
               </div>
             </div>
-
-            {/* Right Side - Content */}
-            <div className="w-full lg:w-3/4 text-center lg:text-left">
-              <h2 className="text-xl md:text-2xl font-bold mb-2">
-                Why Choose <span className="text-[#3E5EC0]">EuroQuest ?</span>
-              </h2>
-              <p className="font-normal text-sm md:text-base leading-7">
-                Programs Covering{" "}
-                <span className="font-semibold">20+ Training Categories</span>{" "}
-                Methodologies Combining Theory And Application Tailored
-                Solutions For Organizations And Individuals Global Presence In
-                Cities Such As Dubai, London, Barcelona, Istanbul, Vienna,
-                Paris, Geneva, And More Strong Focus On Emerging Topics Such As{" "}
-                <span className="font-semibold">
-                  Artificial Intelligence, Sustainability, And Digital
-                  Transformation
-                </span>
-              </p>
-            </div>
           </div>
-          <section className="bg-[#F8FBFF] md:py-11 py-8 mt-4">
-            <Container className="flex flex-col gap-14 relative z-10">
-              <div className="w-full">
-                {/* <SectionTitle title="Our" highlight="Impact" className="!mb-8" /> */}
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <img
-                      src="/assets/icons/check.svg"
-                      alt=""
-                      className="w-12 h-12"
-                    />
-                    <h3 className="text-base font-semibold text-black mb-2">
-                      Organizations Improve Workforce Efficiency
-                    </h3>
-                  </div>
-
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <img
-                      src="/assets/icons/check.svg"
-                      alt=""
-                      className="w-12 h-12"
-                    />
-                    <h3 className="text-base font-semibold text-black mb-2">
-                      Professionals Gain Skills For Career Advancement
-                    </h3>
-                  </div>
-
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <img
-                      src="/assets/icons/check.svg"
-                      alt=""
-                      className="w-12 h-12"
-                    />
-                    <h3 className="text-base font-semibold text-black mb-2">
-                      Teams Achieve Better Collaboration And Results
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </Container>
-          </section>
         </div>
       </div>
     </section>

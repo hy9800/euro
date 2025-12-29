@@ -2,14 +2,11 @@ import SectionTitle from "@/components/shared/section-title";
 
 export default function AboutSection() {
   return (
-    <section
-      id="who-is-euroquest"
-      className="bg-white scroll-mt-24"
-    >
+    <section id="who-is-euroquest" className="scroll-mt-24">
       <div className="flex flex-col gap-12 relative z-10">
         <div className="w-full">
           <SectionTitle
-            title="Who is EuroQuest"
+            title="About EuroQuest International"
             highlight=""
             className="!mb-4"
           />
@@ -18,7 +15,7 @@ export default function AboutSection() {
             International has delivered more than 1000 training programs,
             benefiting over 15,000 participants across diverse sectors in global
             hubs including Dubai, London, Barcelona, Istanbul, Vienna, Paris,
-            and Geneva. corporations.
+            and Geneva.
           </p>
         </div>
       </div>

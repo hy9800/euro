@@ -8,16 +8,16 @@ export default function CoverageSection() {
         <div className="relative w-full z-50">
           <div className=" text-center flex flex-col justify-center items-center gap-3 w-full md:w-auto px-4">
             <h2 className="font-semibold text-2xl md:text-4xl text-black">
-              Geographical Coverage
+              التغطية الجغرافية
             </h2>
             <p className="text-[#7C7B7B]">
-              find our services in 25 cities around the world
+              اعثر على خدماتنا في 25 مدينة حول العالم
             </p>
             <Link
               href={"/training-cities"}
               className="md:max-w-[150px] max-w-[120px] text-sm w-full rounded-full cursor-pointer mt-2 bg-[#3e5ec0] text-white py-2 px-2 flex items-center justify-center font-medium"
             >
-              See All
+              عرض الكل
               <i className="fa-solid fa-chevron-right ml-2"></i>
             </Link>
           </div>

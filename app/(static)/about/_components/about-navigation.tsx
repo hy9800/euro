@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const sections = [
-  { id: "who-is-euroquest", label: "About EuroQuest"},
+  // { id: "who-is-euroquest", label: "About EuroQuest"},
   { id: "our-vision", label: "Our Vision" },
   { id: "our-mission", label: "Our Mission" },
   { id: "our-values", label: "Our Values" },

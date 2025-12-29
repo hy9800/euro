@@ -5,7 +5,7 @@ export default function VissionMission() {
     <>
       {/* Our Vission */}
       <section id="our-vision" className="scroll-mt-24">
-        <div className="flex flex-col gap-12 relative z-10 md:my-10 my-8">
+        <div className="flex flex-col gap-12 relative z-10">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
             <div className="w-20 flex-shrink-0">
               <img
@@ -16,7 +16,7 @@ export default function VissionMission() {
             </div>
             <div className="text-center sm:text-start">
               <h3 className="mb-1 text-xl md:text-2xl font-bold capitalize">
-                <span className="text-[#3E5EC0]">Our Vision</span>
+                <span>Our Vision</span>
               </h3>
               <p className="font-normal text-sm md:text-base leading-7">
                 To be the global first choice in training and professional
@@ -41,7 +41,7 @@ export default function VissionMission() {
             </div>
             <div className="text-center sm:text-start">
               <h3 className="mb-1 text-xl md:text-2xl font-bold capitalize">
-                <span className="text-[#3E5EC0]">Our Mission</span>
+                <span>Our Mission</span>
               </h3>
               <p className="font-normal text-sm md:text-base">
                 To empower individuals, teams, and organizations to enhance

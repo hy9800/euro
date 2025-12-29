@@ -90,7 +90,7 @@ export default function AboutPage() {
         <div className="flex flex-col xl:flex-row gap-6 xl:gap-8 py-6 lg:py-8">
           <AboutNavigation />
           <div className="flex-1 min-w-0">
-            <AboutSection />
+            {/* <AboutSection /> */}
             <VissionMission />
             <OurValues />
             <OurClients />

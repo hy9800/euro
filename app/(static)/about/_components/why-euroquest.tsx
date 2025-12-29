@@ -6,7 +6,7 @@ export default function WhyEuroquest() {
           <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
             {/* Left Side - Question Mark Icon */}
             <div className="w-full lg:w-3/4 flex flex-col gap-4">
-              <h2 className="text-xl md:text-2xl font-bold mb-2">
+              <h2 className="text-xl md:text-3xl font-bold mb-2">
                 Why EuroQuest International?
               </h2>
               <ul className="space-y-3">
